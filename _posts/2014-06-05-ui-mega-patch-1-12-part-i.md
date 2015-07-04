@@ -3,19 +3,6 @@ layout: post
 status: publish
 published: true
 title: UI Mega Patch (1.12) Part I
-author:
-  display_name: Miguel
-  login: ObjectiveTruth
-  email: j.mendez@rogers.com
-  url: ''
-author_login: ObjectiveTruth
-author_email: j.mendez@rogers.com
-wordpress_id: 213
-wordpress_url: http://www.objectivetruth.ca/?p=213
-date: !binary |-
-  MjAxNC0wNi0wNSAyMzo1Mzo1NyAtMDQwMA==
-date_gmt: !binary |-
-  MjAxNC0wNi0wNiAwMzo1Mzo1NyAtMDQwMA==
 categories:
 - UOITDCLibraryBooking
 tags:
@@ -27,18 +14,18 @@ tags:
 - burns
 - xml
 ---
-![Attachment-3](http://www.objectivetruth.ca/wp-content/uploads/2014/06/Attachment-3-e1402026659106.png)
+##Intro
 
-Intro</strong\>
- Haven't written a post in a while since I've been so busy on this
+Haven't written a post in a while since I've been so busy on this
 update. I got recharged by having a couple new downloaders (that weren't
 close friends) and had a lot of feedback on user experience.
 
 Here are few topics that I've been reading up on that are quite
 interesting
 
-KenBurnsView</strong\>
- https://github.com/flavioarfaria/KenBurnsView
+##KenBurnsView
+
+https://github.com/flavioarfaria/KenBurnsView
 
 Great library whipped up by this guy gives a kenburns effect (wiki
 link). I came up with the idea of using this by accident for the
@@ -46,10 +33,9 @@ policies and the about section. I accidently put this as the background
 and I just stared at it for like 5 minutes marveling at how awesome it
 looked that I had to incorporate it.
 
-Technical</strong\>
+##Technical
 
-The library is very simple to use and I recommend putting it inside a
-[ViewFlipper as opposed to
+The library is very simple to use and I recommend putting it inside a [ViewFlipper as opposed to
 a](http://developer.android.com/reference/android/widget/ViewFlipper.html "viewflipper android dev link")ViewSwitcher(recommended
 in the example).
 
@@ -79,13 +65,21 @@ used
     </ViewFlipper>
 ```
 What is important to note is the autoStart = "false" part, what this means is that in conjunction with the Picasso library (WOW, from square) this allows you to load big images without having to worry about load times.
+
 In the example I made a custom fade_in animation but you can use the default @android:anim/fade_in if you want to do it quickly.
 
-Picasso Library (From Square)</span></strong></h2>
+##Picasso Library (From Square)
+
 http://square.github.io/picasso/
+
 This library will just blow anyone who uses android completely away. Its extremely simple:
-Picasso</span>.</span>with</span>(</span>context</span>).</span>load</span>(</span>"http://i.imgur.com/DvpvklR.png"</span>).</span>into</span>(</span>imageView</span>);</span></pre>
+
+```java
+Picasso with(context).load("http://i.imgur.com/DvpvklR.png").into(imageView);
+```
+
 Using it with loading web images makes it a breeze in a listview even. The usage I had for it was loading images since it implements its own LRU cache. The important part is the callback interface that fires when the images has been loaded to memory or fires right away if it gets a cache hit.
+
 I decided to use this in an application class so the same LRU cache is shared among all instances, making it even more efficient when using the same images in different views.
 
 ```java
@@ -134,5 +128,7 @@ This means I can call this from anywhere:
 ```
 
 What this code does is gets the Picasso instance from the applications class (which all activities extend from), and loads the image into the appropriate XML view. However you'll see the argument for .into() is a Worker class. This custom class I made implements the callback interface and by the awesome rules of Java "Runtime Polymorphism", calls onBitMapLoaded whenever the bitmap is loaded (be it from cache or from disk). This is where the kenburns is given a source, the viewflipper flipped and the kenburns effect started. To the user he gets a nice blend in and no interruption on the UI thread.. DID I MENTION PICASSO HAS ASYNCHRONOUS???? ZOMG best library ever
+
 10/10 would use again
+
 Gonna split this up into another post, stay tuned!

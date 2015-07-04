@@ -3,19 +3,6 @@ layout: post
 status: publish
 published: true
 title: iOS Swift vs Android Java
-author:
-  display_name: Miguel
-  login: ObjectiveTruth
-  email: j.mendez@rogers.com
-  url: ''
-author_login: ObjectiveTruth
-author_email: j.mendez@rogers.com
-wordpress_id: 340
-wordpress_url: http://www.objectivetruth.ca/?p=340
-date: !binary |-
-  MjAxNC0xMi0yNiAyMDoxNzowMCAtMDUwMA==
-date_gmt: !binary |-
-  MjAxNC0xMi0yNyAwMToxNzowMCAtMDUwMA==
 categories:
 - iOs Programming
 tags:
@@ -28,16 +15,17 @@ tags:
 - swift
 - java
 ---
-In short, I like Swift
- Undoubtedly, a huge improvement over Objective-C(which looks like a
+##In short, I like Swift
+
+Undoubtedly, a huge improvement over Objective-C(which looks like a
 nightmare) but I'll focus more on Android Java.
 
-Things I like:
+##Things I like:
 
-Named Parameters</h4\>\
- Allows you to specify the name of the parameter in the function call.
-Code Readability just went through the roof! Check out this code snippet
-below
+**Named Parameters**
+
+Allows you to specify the name of the parameter in the function call.
+Code Readability just went through the roof! Check out this code snippet below
 
 ```swift
 //Simple Area of rectangle calculator
@@ -51,8 +39,10 @@ printAreaOfRectangle(x: 8, y: 5)
 ```
 
 Classic example where you know you need to provide an X and Y value, but in what order? If i came back 6 months later to look at this code I'd have to delve in the documentation to know what I was trying to do. I think this comes from Javascript where you send in a JSON object with all the parameters you want used. Anyways great work Apple.
-Optionals</span></h4>
+Optionals
+
 A return type that can be nil(an error), or something useful.
+
 This has a huge effect on stability because the language requires you to handle the nil case somehow before you can reference the object inside. This is referred to checking before un-boxing. Check the code below:
 
 ```swift
@@ -80,17 +70,25 @@ if let roomCountGood = john.residence?.numberOfRooms {
 ```
 
 Essentially, you use the ? after a variable to denote that its an optional, which tells the system that there's a situation where it can be nil. This forces anyone using the function or variable later in the code to check for nil. It can be thought of as throwing an exception in Java, but much simpler.
-If you've ever done Android Dev you know you need to CONSTANTLY be checking for null</strong>, even when there's no possible way for a variable to be null, check it anyways
-Storyboard</span></h4>
+
+If you've ever done Android Dev you know you need to CONSTANTLY be checking for null, even when there's no possible way for a variable to be null, check it anyways
+Storyboard
+
 Allows you to do ALOT of design through a GUI. I'm sure everyone has experienced the frustration of using the Android Visual Editor. The ease of which you can handle different device parameters and just plot down the flow of an app is incredible.
+
 You can have the visual flow of an app done in a few minutes which this awesome tool.
-</a>
-The Bad:</h3>
-Restrictive</span></h4>
+
+##The Bad
+
+**Restrictive**
+
 From a first look, everything feels very restrictive which is Apple's mantra so I don't blame them.
 Everything boils down to static screens with transitions between them.
+
 On Android I felt so free to do whatever I wanted with fragments.
+
 Here's an example of what I like about Android Fragments, maybe you can do the same on iOS but this is my limited view so far
-</a>
-From @cyrilmottier's blog post: Custom Animations With Fragments</a></p>
-Overall, I really like swift and hope to unravel more of its secrets! Come at me Apple!</h4>
+
+From @cyrilmottier's blog post: Custom Animations With Fragments
+
+Overall, I really like swift and hope to unravel more of its secrets! Come at me Apple!

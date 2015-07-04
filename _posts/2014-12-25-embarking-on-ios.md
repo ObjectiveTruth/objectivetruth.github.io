@@ -3,19 +3,6 @@ layout: post
 status: publish
 published: true
 title: Embarking on iOS
-author:
-  display_name: Miguel
-  login: ObjectiveTruth
-  email: j.mendez@rogers.com
-  url: ''
-author_login: ObjectiveTruth
-author_email: j.mendez@rogers.com
-wordpress_id: 315
-wordpress_url: http://www.objectivetruth.ca/?p=315
-date: !binary |-
-  MjAxNC0xMi0yNSAyMDowNjo1OCAtMDUwMA==
-date_gmt: !binary |-
-  MjAxNC0xMi0yNiAwMTowNjo1OCAtMDUwMA==
 categories:
 - iOs Programming
 tags:
@@ -25,8 +12,9 @@ tags:
 - earnings
 - indeed
 ---
-Why learn iOS?</h2\>\
- Learning Android has been very rewarding and after sharing my success
+##Why learn iOS?
+
+Learning Android has been very rewarding and after sharing my success
 with my professors, they had suggested I learn iOS to round out my
 skills. The biggest draw was the potential earnings from learning both
 languages. I even went ahead and did some research on job potential for
@@ -47,14 +35,15 @@ biggest issue with this approach is the consistency of Visual Design. If
 you have a lead platform, then you will always have a second rate
 citizen style product on the other platforms.
 
-A Word on Branding</h2\>\
- Whenever you make a multi-platform app, there's 2 options:
+##A Word on Branding
+
+Whenever you make a multi-platform app, there's 2 options:
 
 Localize your app to the platform
 
 Globalize your app to look the same on both platforms
  
- The best approach is to Localize your app to the platform so that your
+The best approach is to Localize your app to the platform so that your
 users aren't completely confused when they go to open it. There are
 certain tropes that have been taught to users on each platform that they
 expect when they use an app. When the app doesn't make use of this, they
@@ -64,7 +53,9 @@ app again.
 An example is the Microsoft Office products when they first came out for
 Android and iPhone. Microsoft (to I'm sure great cost and time) tried to
 bring their Metro stylings from Windows Phone to their Android and
-iPhone Office counterparts. If you look at their reviews from then, they
+iPhone Office counterparts. 
+
+If you look at their reviews from then, they
 were horrible. It was so strange to open an app on an iPhone or Android
 and see this alien metro icons that you've never seen before.
 

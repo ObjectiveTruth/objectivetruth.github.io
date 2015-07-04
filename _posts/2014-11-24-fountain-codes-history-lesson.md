@@ -2,20 +2,7 @@
 layout: post
 status: publish
 published: true
-title: ! 'Fountain Codes: History Lesson'
-author:
-  display_name: Miguel
-  login: ObjectiveTruth
-  email: j.mendez@rogers.com
-  url: ''
-author_login: ObjectiveTruth
-author_email: j.mendez@rogers.com
-wordpress_id: 299
-wordpress_url: http://www.objectivetruth.ca/?p=299
-date: !binary |-
-  MjAxNC0xMS0yNCAyMjoyMzozNyAtMDUwMA==
-date_gmt: !binary |-
-  MjAxNC0xMS0yNSAwMzoyMzozNyAtMDUwMA==
+title: Fountain Codes - History Lesson
 categories:
 - FountainCode
 tags: []

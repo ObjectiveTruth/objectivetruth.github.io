@@ -3,19 +3,6 @@ layout: post
 status: publish
 published: true
 title: Why Check for null?
-author:
-  display_name: Miguel
-  login: ObjectiveTruth
-  email: j.mendez@rogers.com
-  url: ''
-author_login: ObjectiveTruth
-author_email: j.mendez@rogers.com
-wordpress_id: 276
-wordpress_url: http://www.objectivetruth.ca/?p=276
-date: !binary |-
-  MjAxNC0wNy0yOCAxNTowNTowNiAtMDQwMA==
-date_gmt: !binary |-
-  MjAxNC0wNy0yOCAxOTowNTowNiAtMDQwMA==
 categories:
 - Tutorial
 tags:
@@ -27,11 +14,9 @@ tags:
 - Singleton
 - reddit
 ---
-![Null-Pointer-Exception-Crunchify](http://www.objectivetruth.ca/wp-content/uploads/2014/07/Null-Pointer-Exception-Crunchify-238x300.jpg)</h2\>
+##Intro
 
-Intro
- I'm fairly active over at r/androiddev and someone asked about why
-check for null? 
+I'm fairly active over at r/androiddev and someone asked about why check for null? 
 
 I remember asking the same questions when I first started but after a
 while it just becomes part of your every day routine with android, check
@@ -48,8 +33,9 @@ means more points of failure.
 
 
 
-Why check for null in the first place?
- Bottom line, checking for null avoids unsightly NPE(null pointer
+##Why check for null in the first place?
+
+Bottom line, checking for null avoids unsightly NPE(null pointer
 exceptions) when your user does something you never expected or even the
 system didn't expect would ever happen.
 
@@ -120,34 +106,45 @@ with an adView. Below is the sample code, the question and my response:
     }
 ```
 
-The question:
-I am curious why are you doing if (adView !=null) adView.destory();</em> and likewise for all activity calls. I have seen that before. I checked Android reference on AdView</a> and it just calls mAdView.pause();</em>, mAdView.destroy();</em>, etc.</blockquote>
-My response:
+##The question
 
+I am curious why are you doing `if (adView !=null) adView.destory();` and likewise for all activity calls. I have seen that before. 
+I checked Android reference on `AdView` and it just calls `mAdView.pause();`, `mAdView.destroy();`, etc.
+
+##My response:
 
 This is just good practice. Its a common complaint with android that even though you think something will NEVER, ever, EVER! be null.. there will be some fringe case where it will be null and the user will get an unsightly crash (wop wonnn...)
-You should especially do this when you're working with Views, or activities, or well lots of things. Lets say there's a moment when an activity is queued to be destroyed and the add is still loading, and the ad(being a good citizen) takes it upon itself to self destruct.
-By the time the onDestroy gets called, your adView no longer exists. So when adView.destroy() gets called, you'll get a NPE(null pointer exception).
-When I first started I didn't understand it either, but the more you do live apps you'll get these very strange NPEs that can be avoided by checking for null.</blockquote>
-</div>
-</div>
- 
-When and where to check for nulls?</h2>
-I've come to the conclusion that you should check whenever you receive a reference for something you did NOT control, is transient(can be destroyed at any time),  or is not a system Singleton.
-Examples of places you must check for null (not exhaustive list):
 
-Views</li>
-Activities</li>
-Fragments</li>
-Strings</li>
-Intents Bundles</li>
-</ul>
+You should especially do this when you're working with Views, or activities, or well lots of things. Lets say there's a moment when an activity is queued to be destroyed and the add is still loading, and the ad(being a good citizen) takes it upon itself to self destruct.
+
+By the time the onDestroy gets called, your adView no longer exists. So when adView.destroy() gets called, you'll get a NPE(null pointer exception).
+
+When I first started I didn't understand it either, but the more you do live apps you'll get these very strange NPEs that can be avoided by checking for null.
+
+##When and where to check for nulls?
+
+I've come to the conclusion that you should check whenever you receive a reference for something you did NOT control, is transient(can be destroyed at any time),  or is not a system Singleton. Examples of places you must check for null (not exhaustive list):
+
+* Views
+
+* Activities
+
+* Fragments
+
+* Strings
+
+* Intents Bundles
+
 Something important to note is when referencing an activity from within a listener. This you have to be very careful with.. are you sure it has to be there?
-Can the activity be destroyed before the listener has been called or destroyed?
+
+###Can the activity be destroyed before the listener has been called or destroyed?
+
 Examples of where not to check for nulls:
 
+```java
 AppWidgetManager.getInstance()</li>
-context.getSystemService(Context.ALARM_SERVICE)</li>
-PreferenceManager.getDefaultSharedPreferences(this);</li>
-</ul>
+context.getSystemService(Context.ALARM_SERVICE)
+PreferenceManager.getDefaultSharedPreferences(this);
+```
+
 The list of what not to check is fairly large but you can get the idea, a system service is something the system controls and there is always at LEAST 1 of them.

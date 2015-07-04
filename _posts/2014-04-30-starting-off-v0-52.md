@@ -3,19 +3,6 @@ layout: post
 status: publish
 published: true
 title: Starting Off (v0.52)
-author:
-  display_name: Miguel
-  login: ObjectiveTruth
-  email: j.mendez@rogers.com
-  url: ''
-author_login: ObjectiveTruth
-author_email: j.mendez@rogers.com
-wordpress_id: 94
-wordpress_url: http://www.objectivetruth.ca/?p=94
-date: !binary |-
-  MjAxNC0wNC0zMCAwMDo1MDo0OSAtMDQwMA==
-date_gmt: !binary |-
-  MjAxNC0wNC0zMCAwNDo1MDo0OSAtMDQwMA==
 categories:
 - UOITDCLibraryBooking
 tags:
@@ -28,8 +15,9 @@ tags:
 ---
 ![crashedandroid](http://www.objectivetruth.ca/wp-content/uploads/2014/04/crashedandroid.png)
 
-Intro</strong\>
- After lots of trouble shooting and seeing the above screen for the
+##Intro
+
+After lots of trouble shooting and seeing the above screen for the
 millionth time I'm comfortable enough to post up the fairly stable
 version of the UOITLibraryBooking app i've been working on.
 
@@ -44,8 +32,9 @@ giving me the idea to give this a go.
 
  
 
-What I've been working on today:</strong\>
- I had a friend help me beta test the app and thankfully found an area
+##What I've been working on today
+
+I had a friend help me beta test the app and thankfully found an area
 where I hard coded the login info using my own credentials for the
 school!
 
@@ -90,24 +79,25 @@ entire entry in the xml and you're golden:
 ```
 I got it working with hilarious results!
 
-Patch Notes (v0.52)</h2>
--More Stability Improvements, shouldn't crash at all switching between screens while refreshing. Will give you a soft pop up when the refresh is done though, even if you leave the app.
--Added confirm screen for booking a room
--Still playing with the icons and formatting for the calendar screen.. not a big fan of the green check marks but I'm not quite sure what else to use, hopefully adding a background will live it up. Don't worry opacity will be low
--Removed Jsoup dependancies when booking a room for increase performance.
--Formatting issues with certain fonts have been fixed, mostly with booking a room and joining a room
-Known Bugs:</h3>
--It looks like you can cancel loading tasks, but i haven't implemented it as yet, if you cancel it, it will continue
--There's an issue with refreshing when you go from 1 day available to 2 days available. You have to close  and then open the app to fix it, still working on this.
--About still doesn't work, mostly I don't know what to put in there, doesn't take long to make..figure i'd say blah blah blah, I'm a student please download my crappy app, haha.
--Can't join a previously locked in room or create a new reservation if there is another reservation being attempted in that time slot. Its grayed out so unless you try you won't notice it
- 
-Installing the .apk</h2>
-Browse to this website on your phone and when you click the link it will ask to download/install. Probably the easiest way, otherwise you gotta download to the computer, plug in your phone and upload it manually.
-Comment below with what you like or don't like, I'll try to get it working on the app!
-P.S. LAST THING,
-THIS APP IS NOT ENDORSED NOR DOES IT HAVE ANY AFFILIATION WHATSOEVER WITH UOIT. ALL OPINIONS ON THIS WEBSITE AND USAGE OF THE APP IS AT YOUR OWN RISK AND ARE NOT ENDORSED BY UOIT WHATSOEVER. THIS MEAN UOIT DOES NOT ENDORSE THIS APP NOR DO THEY ENDORSE THIS APP.
-</span></h1>
-Here's the link:
-http://www.objectivetruth.ca/androidbuilds/UOITLibraryBooking052.apk</a></h3>
-~~~~
+##Patch Notes (v0.52)
+
+* More Stability Improvements, shouldn't crash at all switching between screens while refreshing. Will give you a soft pop up when the refresh is done though, even if you leave the app.
+
+* Added confirm screen for booking a room
+
+* Still playing with the icons and formatting for the calendar screen.. not a big fan of the green check marks but I'm not quite sure what else to use, hopefully adding a background will live it up. Don't worry opacity will be low
+
+* Removed Jsoup dependancies when booking a room for increase performance.
+
+* Formatting issues with certain fonts have been fixed, mostly with booking a room and joining a room
+
+
+##Known Bugs
+
+* It looks like you can cancel loading tasks, but i haven't implemented it as yet, if you cancel it, it will continue
+
+* There's an issue with refreshing when you go from 1 day available to 2 days available. You have to close  and then open the app to fix it, still working on this.
+
+* About still doesn't work, mostly I don't know what to put in there, doesn't take long to make..figure i'd say blah blah blah, I'm a student please download my crappy app, haha.
+
+* Can't join a previously locked in room or create a new reservation if there is another reservation being attempted in that time slot. Its grayed out so unless you try you won't notice it

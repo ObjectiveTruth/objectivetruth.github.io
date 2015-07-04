@@ -2,20 +2,7 @@
 layout: post
 status: publish
 published: true
-title: Dedicated Prop Hunt Server Setup (Windows) Part II (Adding mods&#47;maps)
-author:
-  display_name: Miguel
-  login: ObjectiveTruth
-  email: j.mendez@rogers.com
-  url: ''
-author_login: ObjectiveTruth
-author_email: j.mendez@rogers.com
-wordpress_id: 37
-wordpress_url: http://www.objectivetruth.ca/?p=37
-date: !binary |-
-  MjAxNC0wMy0yNCAxMzo0Mjo0MSAtMDQwMA==
-date_gmt: !binary |-
-  MjAxNC0wMy0yNCAxNzo0Mjo0MSAtMDQwMA==
+title: Dedicated Prop Hunt Server Setup (Windows) Part II (Adding mods/maps)
 categories:
 - Tutorial
 tags:
@@ -25,13 +12,15 @@ tags:
 - maps
 - mods
 ---
-Introduction
- Now that we have a server up and running and your friends have begun to
+##Introduction
+
+Now that we have a server up and running and your friends have begun to
 join and see how cruddy it is without anything too interesting lets move
 onto adding mods (maps, sounds, gamemodes, etc..)
 
-Practical:
- There are a few ways to get new maps. pre-Gmod13, you had to find the
+##Practical:
+
+There are a few ways to get new maps. pre-Gmod13, you had to find the
 files yourself and add them to your server(this is the way i'm going to
 show, and I prefer it because you can edit things and have more control
 over what is on your server). With Gmod13, there is the ability to sync
@@ -73,10 +62,8 @@ to c:\\\\garrysmod\\
 4. That's it, now run your server and you will have the map available
 for use. This will work work on any other kind of mod too of course.
 
-How do I change the map?
+###How do I change the map?
+
  Check out section 3 on how to add ulx, an admin enhancement
 library with tons of awesome options. One of which is how to change the
 map/mode easily.
-
-Continue onto Part III \>\>\></h2\>\
-  

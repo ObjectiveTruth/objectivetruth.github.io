@@ -3,19 +3,6 @@ layout: post
 status: publish
 published: true
 title: iOS Dev Requirements
-author:
-  display_name: Miguel
-  login: ObjectiveTruth
-  email: j.mendez@rogers.com
-  url: ''
-author_login: ObjectiveTruth
-author_email: j.mendez@rogers.com
-wordpress_id: 334
-wordpress_url: http://www.objectivetruth.ca/?p=334
-date: !binary |-
-  MjAxNC0xMi0yNSAyMDo1MTozOSAtMDUwMA==
-date_gmt: !binary |-
-  MjAxNC0xMi0yNiAwMTo1MTozOSAtMDUwMA==
 categories:
 - iOs Programming
 tags:
@@ -27,40 +14,41 @@ tags:
 - education program
 - kijiji
 ---
-Hardware Requirements
- After searching far and wide, it was tough to find an up to date guide
+##Hardware Requirements
+
+After searching far and wide, it was tough to find an up to date guide
 on what I should buy. Here's everything I ended up buying and I'll
 explain why below:
 
-[Mac Mini - \$
-749.00](http://store.apple.com/ca/buy-mac/mac-mini "Mac Mini")
+[Mac Mini - $749.00](http://store.apple.com/ca/buy-mac/mac-mini "Mac Mini")
 
-[iPod Touch - \$
-219.00](http://store.apple.com/ca/buy-ipod/ipod-touch/16gb-space-grey "ipod touch 16GB")
+[iPod Touch - $219.00](http://store.apple.com/ca/buy-ipod/ipod-touch/16gb-space-grey "ipod touch 16GB")
 
-Developer Account License - \$ 99.00 / year
+Developer Account License - $ 99.00 / year
  
- Mac Mini:
+##Mac Mini
 
 You're going to need at least 8GB of Ram, and because Apple doesn't let
-you upgrade you need to buy this from them at a crazy 100\$ for 4 GB to
+you upgrade you need to buy this from them at a crazy 100$ for 4 GB to
 8GB upgrade, so you might as well go with the middle of the ground Mac
-Mini. Its 200\$ more but if you're going to upgrade to 8GB from the base
+Mini. Its 200$ more but if you're going to upgrade to 8GB from the base
 model anyways, its very worth it.
 
-Why do you need so much RAM?
+###Why do you need so much RAM?
 
 If you've ever done development, you know you're going to have a lot of
 big files open, this will each up your RAM like woah. 8GB is a good
 balance that will make your compile times much faster in the long run
 
-iPod Touch:
+##iPod Touch:
 
-DON'T buy an old one from Kijiji.
+**DON'T buy an old one from Kijiji**
 
 The current gen as of writing is the 5th gen iPod Touch. iPods aren't
 refreshed as fast as iPhones, so this is like an iPhone 4S which is
-pretty old right now. If you were to get a 4th gen iPod Touch of Kijiji
+pretty old right now. 
+
+If you were to get a 4th gen iPod Touch of Kijiji
 for like 100\$, its wayyy old and won't support iOS 7 or 8 (i know
 right???). Unfortunately, there's rumors of an iPod Touch refresh coming
 in a few months but I can't wait that long so I plopped down the \$219
@@ -72,9 +60,9 @@ To be honest, I hate this thing, its so slow and knowing I paid full
 price for a 2-3 year old product makes me sick, but its the cheapest
 option.
 
-Just do it
+**Just do it**
 
-Developer Account License
+##Developer Account License
 
 You need this to debug your app on a physical device.
 

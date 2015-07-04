@@ -2,21 +2,7 @@
 layout: post
 status: publish
 published: true
-title: ! 'Fountain Code: The Beginnings'
-author:
-  display_name: Shaine Perera
-  login: ShaineP
-  email: shaine.perera@uoit.net
-  url: http://www.objectivetruth.ca
-author_login: ShaineP
-author_email: shaine.perera@uoit.net
-author_url: http://www.objectivetruth.ca
-wordpress_id: 296
-wordpress_url: http://www.objectivetruth.ca/?p=296
-date: !binary |-
-  MjAxNC0xMS0yNCAxNzo0NDo1NyAtMDUwMA==
-date_gmt: !binary |-
-  MjAxNC0xMS0yNCAyMjo0NDo1NyAtMDUwMA==
+title: Fountain Code - The Beginnings
 categories:
 - FountainCode
 tags: []
