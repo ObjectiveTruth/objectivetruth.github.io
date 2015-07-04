@@ -1,6 +1,7 @@
 ---
 layout: page
 title: UoitDcBooking
+image:  uoit-library-booking-icon-low.png
 permalink: /uoit-dc-booking/
 ---
 ![UOIT DC Booking Screenshot 1](/images/uoit-dc-booking-screenshot1.png "Screenshot 1")

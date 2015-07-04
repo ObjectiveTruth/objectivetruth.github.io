@@ -1,6 +1,7 @@
 ---
 layout: about_page
 title: Miguel
+image: miguel-low.jpeg
 permalink: /about/
 ---
 

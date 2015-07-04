@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Friend Finder Widget
+image: friend-finder-widget-low.png
 permalink: /friend-finder-widget/
 ---
 ![Friend Finder Widget Screenshot 1](/images/friend-finder-widget-screenshot1.png "Screenshot 1")

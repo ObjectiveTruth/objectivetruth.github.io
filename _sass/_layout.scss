@@ -3,11 +3,23 @@
  */
 .site-header {
     border-top: 5px solid $grey-color-dark;
-    border-bottom: 1px solid $grey-color-light;
+    //Take away small border that bootstrap already gives
+    //border-bottom: 1px solid $grey-color-light;
     min-height: 56px;
 
     // Positioning context for the mobile navigation icon
     position: relative;
+    .objectivetruth-top-nav-bar{
+        a {
+            line-height: inherit !important;
+            padding-bottom: 5px !important;
+        }
+        .project-nav-icon {
+            img {
+                height: 2.5em;
+            }
+        }
+    }
 }
 
 .site-title {
