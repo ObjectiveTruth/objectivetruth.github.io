@@ -10,5 +10,5 @@ I'm a computer science student looking to get into the **Machine Learning** indu
 
 My background ranges from **Outside Sales**, **Biosciences**, **Real Estate Investment**, and now **CS and Technology**.
 
-I have a passion for anything technology related and I love to get into the deep concepts in anything I learn. Below is arbitrary proficiencies in different areas:
+I have a passion for anything technology related and I love to get into the deep concepts in anything I learn.
 
