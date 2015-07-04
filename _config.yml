@@ -3,7 +3,7 @@ title: Nothing but the Objectivetruth
 email: miguel@objectivetruth.ca
 description: > # this means to ignore newlines until "baseurl:"
   Musing from a mature student with a background in Sales, Biosciences and now Computer Science.
-  Trying to save the world one app at a time.
+  Trying to save the world one Machine Learning app at a time.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://www.objectivetruth.ca" # the base hostname & protocol for your site
 github_username:  Objectivetruth
