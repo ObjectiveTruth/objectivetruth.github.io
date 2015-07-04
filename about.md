@@ -1,11 +1,14 @@
 ---
-layout: page
-title: About
+layout: about_page
+title: Miguel
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+Thanks for stopping by, 
 
-You can find the source code for the Jekyll new theme at: [github.com/jglovier/jekyll-new](https://github.com/jglovier/jekyll-new)
+I'm a computer science student looking to get into the **Machine Learning** industry.
 
-You can find the source code for Jekyll at [github.com/jekyll/jekyll](https://github.com/jekyll/jekyll)
+My background ranges from **Outside Sales**, **Biosciences**, **Real Estate Investment**, and now **CS and Technology**.
+
+I have a passion for anything technology related and I love to get into the deep concepts in anything I learn. Below is arbitrary proficiencies in different areas:
+

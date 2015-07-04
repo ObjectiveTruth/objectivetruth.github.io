@@ -4,7 +4,7 @@ title:  "Behold the power of Vim regex!"
 date:   2015-06-24 13:58:00
 categories: vim
 ---
-Recently purchased Drew Neil's Excellent [Practical Vim](http://www.amazon.com/Practical-Vim-Thought-Pragmatic-Programmers/dp/1934356980) book and this book is quite advanced.
+Recently purchased Drew Neil's Excellent [Practical Vim](http://www.amazon.com/Practical-Vim-Thought-Pragmatic-Programmers/dp/1934356980) book and its quite advanced.
 
 One of the intermediate lessons is the use of Regex for substitute (search/replace on steroids) :+1:
 
