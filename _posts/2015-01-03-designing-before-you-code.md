@@ -11,8 +11,6 @@ tags:
 - hamburger
 - mockup
 ---
-##You Need a Game Plan
-
 When I made my first app, I took the naive approach of just starting to
 code and figuring it out as I went.
 

@@ -15,10 +15,8 @@ tags:
 - swift
 - java
 ---
-##In short, I like Swift
-
-Undoubtedly, a huge improvement over Objective-C(which looks like a
-nightmare) but I'll focus more on Android Java.
+I like Swift, undoubtedly, a huge improvement over Objective-C (which looks like a
+nightmare) here's my favorites when compared to Java for Android
 
 ##Things I like:
 

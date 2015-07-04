@@ -14,6 +14,8 @@ tags:
 - education program
 - kijiji
 ---
+Starting off I had no idea where to start, hopefully you'll learn from my mistakes
+
 ##Hardware Requirements
 
 After searching far and wide, it was tough to find an up to date guide

@@ -3,13 +3,6 @@ layout: post
 title:  "Project for PHP"
 date:   2015-04-19 14:30:21
 ---
-
-__see ```./sampleprogram/``` for hangman sample program__
-
-##Introduction
-
----
-
 PHP is an exceedingly popular language that mixes some of the best elements of javascript with elements of object oriented programming.
 
 The decision to learn PHP came from a personal project using Snapchat's undocument API.
