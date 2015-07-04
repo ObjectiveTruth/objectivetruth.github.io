@@ -1,0 +1,1001 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nothing but the Objectivetruth</title>
+    <description>Musing from a mature student with a background in Sales, Biosciences and now Computer Science. Trying to save the world one app at a time.
+</description>
+    <link>objectivetruth.github.io/</link>
+    <atom:link href="objectivetruth.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 04 Jul 2015 10:34:11 -0400</pubDate>
+    <lastBuildDate>Sat, 04 Jul 2015 10:34:11 -0400</lastBuildDate>
+    <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Behold the power of Vim regex!</title>
+        <description>&lt;p&gt;Recently purchased Drew Neil&amp;#39;s Excellent &lt;a href=&quot;http://www.amazon.com/Practical-Vim-Thought-Pragmatic-Programmers/dp/1934356980&quot;&gt;Practical Vim&lt;/a&gt; book and this book is quite advanced.&lt;/p&gt;
+
+&lt;p&gt;One of the intermediate lessons is the use of Regex for substitute (search/replace on steroids) &lt;img class=&#39;emoji&#39; title=&#39;:+1:&#39; alt=&#39;:+1:&#39; src=&#39;https://assets.github.com/images/icons/emoji/unicode/1f44d.png&#39; height=&#39;20&#39; width=&#39;20&#39; align=&#39;absmiddle&#39; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You can use back sustitution to take search groups and apply it to the resulting replace operation&lt;/p&gt;
+
+&lt;p&gt;And here the wicked gif I made of me using this insane feature &lt;img class=&#39;emoji&#39; title=&#39;:godmode:&#39; alt=&#39;:godmode:&#39; src=&#39;https://assets.github.com/images/icons/emoji/godmode.png&#39; height=&#39;20&#39; width=&#39;20&#39; align=&#39;absmiddle&#39; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/behold_power_of_vim.gif&quot; alt=&quot;behold the power of vim, plebs&quot;&gt;&lt;/p&gt;
+
+&lt;h2&gt;WTF just happened?&lt;/h2&gt;
+
+&lt;p&gt;Here&amp;#39;s the Regex I used to swap the left and right side of assignment expression&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;lt;,&amp;#39;&lt;/span&gt;&amp;gt;s/&lt;span class=&quot;se&quot;&gt;\(\s\+\)\(&lt;/span&gt;.&lt;span class=&quot;se&quot;&gt;\{&lt;/span&gt;-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\(&lt;/span&gt;.&lt;span class=&quot;se&quot;&gt;\{&lt;/span&gt;-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\)&lt;/span&gt;/&lt;span class=&quot;se&quot;&gt;\1\3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\2&lt;/span&gt;/g
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Range of last Visual Selection&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;#39;&amp;lt;,&amp;#39;&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;When using the Visual selector(Shift-V), press colon (:). It will prepopulate the commandline with the range you&amp;#39;ve selected with the Visual Selector.&lt;/p&gt;
+
+&lt;h3&gt;Substitute Ex Command&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;s/{match}/{replace}/{flags}&lt;/code&gt; &lt;/p&gt;
+
+&lt;p&gt;General form of the substitute (find/replace) command. Flags in this case is &lt;code&gt;g&lt;/code&gt; meaning match ALL, if not it will stop after the first match&lt;/p&gt;
+
+&lt;h3&gt;Regex Match&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;\(\s\+\)\(.\{-}\) = \(.\{-}\&lt;/code&gt; - The meat of the search. I&amp;#39;ll go over it one by one&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;(s+)&lt;/code&gt; Make a group of all whitespace characters &lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;(.{-})&lt;/code&gt; Make a group of any character but don&amp;#39;t be greedy. Meaning it will truncate once the next part of the search is found. Otherwise the . will greedily include everything except the newline&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;(.{-})&lt;/code&gt; Make the last group same as above&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Replace with Backsubstitution&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;\1\3 = \2&lt;/code&gt; &lt;/p&gt;
+
+&lt;p&gt;General form of &lt;code&gt;\n&lt;/code&gt; where n is the group number (in sequence) allows you to take search groups and use them in the replace operation. Here we take the whitespace(&lt;code&gt;\1&lt;/code&gt;), add (&lt;code&gt;\3&lt;/code&gt;), concatenate with &amp;quot; = &amp;quot;, and then end with the 2nd group (&lt;code&gt;\2&lt;/code&gt;). &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;VOILA&lt;/strong&gt;&lt;img class=&#39;emoji&#39; title=&#39;:bangbang:&#39; alt=&#39;:bangbang:&#39; src=&#39;https://assets.github.com/images/icons/emoji/unicode/203c.png&#39; height=&#39;20&#39; width=&#39;20&#39; align=&#39;absmiddle&#39; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Wed, 24 Jun 2015 09:58:00 -0400</pubDate>
+        <link>objectivetruth.github.io/vim/2015/06/24/vim-regex-power.html</link>
+        <guid isPermaLink="true">objectivetruth.github.io/vim/2015/06/24/vim-regex-power.html</guid>
+        
+        
+        <category>vim</category>
+        
+      </item>
+    
+      <item>
+        <title>Project for PHP</title>
+        <description>&lt;p&gt;&lt;strong&gt;see &lt;code&gt;./sampleprogram/&lt;/code&gt; for hangman sample program&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2&gt;Introduction&lt;/h2&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;PHP is an exceedingly popular language that mixes some of the best elements of javascript with elements of object oriented programming.&lt;/p&gt;
+
+&lt;p&gt;The decision to learn PHP came from a personal project using Snapchat&amp;#39;s undocument API.&lt;/p&gt;
+
+&lt;p&gt;Originally I learned and wrote a system in python based on a Github project I found but its maintainer stopped working shortly after I started, completely ignoring mine and other&amp;#39;s pull requests. This forced me to search for a more active project.&lt;/p&gt;
+
+&lt;p&gt;This lead me to a fantastic project with an active community of PHP developers.&lt;/p&gt;
+
+&lt;p&gt;The problem is, I didn&amp;#39;t know PHP so, like python I learned from scratch and began work.&lt;/p&gt;
+
+&lt;p&gt;In this report I&amp;#39;ll talk about what I&amp;#39;ve learned so far and some of the best and worst parts of PHP.&lt;/p&gt;
+
+&lt;h2&gt;History&lt;/h2&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;PHP was first developed as a server-side scripting language in 1994 by Rasmus Lerdof.&lt;/p&gt;
+
+&lt;p&gt;The acronym for PHP  use to stand for Personal Home Page but has now changed to mean Hypertext PreProcessor. It is now maintained by The PHP Group which rewrote alot of the core with the Zend Engine which allowed for PHP to become a much more full featured programming language. It now supports debugging, resource management, and many more artifacts modern programmers expect. This has allowed PHP to gain incredible adoption in the world.&lt;/p&gt;
+
+&lt;p&gt;According to wikipedia and a survey in 2013, PHP is installed on more than 240 million websites (39% of those sampled) and 2.1 million webservers worldwide.&lt;/p&gt;
+
+&lt;p&gt;With the ubiquity of Apache this number will still be high but other competitors in the field will surely be nipping at PHP&amp;#39;s heels.&lt;/p&gt;
+
+&lt;h2&gt;Detailed Language Analysis&lt;/h2&gt;
+
+&lt;h2&gt;Type System&lt;/h2&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;Reference PHP systems are interpreted, however facebook (the largest proponent of PHP) and others have since created compilers for PHP. Among them are HHVM (formerlly HipHop for PHP by facebook), Phalanger (compiles to .net CIL), and Roadsend (compiles to linux and windows binaries).&lt;/p&gt;
+
+&lt;p&gt;In both of these instances, PHP does support type inferencing. This means the following is fine&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-PHP&quot; data-lang=&quot;PHP&quot;&gt;&lt;span class=&quot;x&quot;&gt;$myValue = 5;&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;$myValue = &amp;quot;Hello&amp;quot;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In my oppinion, type inferencing is a terrible idea for production code. It leads to strange behaviour and is very difficult to follow for someone else trying to maintain your code. &lt;/p&gt;
+
+&lt;p&gt;In this case however, I found that even if I tried to use verbose type information it failed. I got strange errors. I would run this:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-PHP&quot; data-lang=&quot;PHP&quot;&gt;&lt;span class=&quot;x&quot;&gt;public function printValue(string a){&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;    echo $a.PHP_EOL;&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;and I&amp;#39;d end up with errors like this&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Incorrect type string, expected string&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;wat? &lt;img class=&#39;emoji&#39; title=&#39;:confused:&#39; alt=&#39;:confused:&#39; src=&#39;https://assets.github.com/images/icons/emoji/unicode/1f615.png&#39; height=&#39;20&#39; width=&#39;20&#39; align=&#39;absmiddle&#39; /&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Syntax design for loops&lt;/h2&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;The design takes heavy inspiration from Java which was probably the language du jour when designing the syntax.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-PHP&quot; data-lang=&quot;PHP&quot;&gt;&lt;span class=&quot;x&quot;&gt;for ($x = 0; $x &amp;lt;= 10; $x++) {&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;    echo &amp;quot;The number is: $x&amp;quot;;&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;} &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;There is a syntactic sugar equivalent in foreach for iterating through objects in a collection.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-PHP&quot; data-lang=&quot;PHP&quot;&gt;&lt;span class=&quot;x&quot;&gt;$colors = array(&amp;quot;red&amp;quot;, &amp;quot;green&amp;quot;, &amp;quot;blue&amp;quot;, &amp;quot;yellow&amp;quot;);&lt;/span&gt;
+
+&lt;span class=&quot;x&quot;&gt;foreach ($colors as $value) {&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;    echo &amp;quot;$value &amp;lt;br&amp;gt;&amp;quot;;&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Syntax design for functions&lt;/h2&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;Syntactic inspiration borrows heavily from object oriented java&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-PHP&quot; data-lang=&quot;PHP&quot;&gt;&lt;span class=&quot;x&quot;&gt;public function myFuncName($argument1, $argument2, $optArg1 = true, $optArg2 = false){&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;A nice deviation is optional arguments. If you give a value to an argument like &lt;code&gt;$optionalArgument&lt;/code&gt;, then it becomes optional. &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-PHP&quot; data-lang=&quot;PHP&quot;&gt;&lt;span class=&quot;x&quot;&gt;//Perfectly Valid&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;myFuncName(1, 2);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The program is that it is positionally based. So if you want to not include &lt;code&gt;$optArg1&lt;/code&gt; but include &lt;code&gt;$optArg2&lt;/code&gt;, you can&amp;#39;t.&lt;/p&gt;
+
+&lt;h2&gt;Degree of support for functions as values&lt;/h2&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;PHP supports a concept called &lt;strong&gt;variable functions&lt;/strong&gt;. &lt;/p&gt;
+
+&lt;p&gt;The interpreter can look at runtime for a function with the symbol specified.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-PHP&quot; data-lang=&quot;PHP&quot;&gt;&lt;span class=&quot;x&quot;&gt;public function doNothing(){}&lt;/span&gt;
+
+&lt;span class=&quot;x&quot;&gt;//doNothing is passed as a string but will look for it&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;//in the runtime function symbol table&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;$func = &amp;#39;doNothing&amp;#39;;&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;$func();&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Degree of support for closure&lt;/h2&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;&lt;strong&gt;Closures&lt;/strong&gt; are supported as of PHP 5.3 and above(5.4 is current version).&lt;/p&gt;
+
+&lt;p&gt;This allows for fantastic code reusage and encapsulation. Here&amp;#39;s an example&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-PHP&quot; data-lang=&quot;PHP&quot;&gt;&lt;span class=&quot;x&quot;&gt;$user = &amp;quot;miguel&amp;quot;;&lt;/span&gt;
+
+&lt;span class=&quot;x&quot;&gt;// Create a Closure&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;$greeting = function() use ($user) {&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;  echo &amp;quot;Hello $user&amp;quot;;&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;$greeting();&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;//prints miguel&lt;/span&gt;
+
+&lt;span class=&quot;x&quot;&gt;//change global var&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;$user = &amp;quot;ken&amp;quot;;&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;$greeting();&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;//prints miguel still&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The &lt;strong&gt;closure&lt;/strong&gt; is already built into the language but the keyword &lt;code&gt;use&lt;/code&gt; allows you to add variables outside the normal lexical scope. &lt;/p&gt;
+
+&lt;h2&gt;Degree of support for anonymous and higher order functions&lt;/h2&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;Fairly new to PHP is support for anonymous and higher order functions as of PHP 5.4&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-PHP&quot; data-lang=&quot;PHP&quot;&gt;&lt;span class=&quot;x&quot;&gt;$foo = function (){echo &amp;quot;foo&amp;quot;;};&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;$foo();&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;//prints foo&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And you can use higher functions as callbacks, as you would expect&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-PHP&quot; data-lang=&quot;PHP&quot;&gt;&lt;span class=&quot;x&quot;&gt;function myHighOrderFunc($callback){&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;    sleep(10);&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;    $callback();&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;x&quot;&gt;$myCallback = function(){&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;    echo &amp;quot;I&amp;#39;m done!&amp;quot;;&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;x&quot;&gt;myHigherOrderFunc($myCallback);&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;//prints &amp;quot;I&amp;#39;m done!&amp;quot; after 10 seconds;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Other Novel Features&lt;/h2&gt;
+
+&lt;hr&gt;
+
+&lt;h4&gt;PHP Runtime Assumptions&lt;/h4&gt;
+
+&lt;p&gt;If PHP can&amp;#39;t find the name of the constant it will try to recover from errors by &amp;quot;assuming&amp;quot; things based on your code. This is an interesting feature I&amp;#39;ve never seen elsewhere. Python does this a little but its not verbose so I never noticed.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-PHP&quot; data-lang=&quot;PHP&quot;&gt;&lt;span class=&quot;x&quot;&gt;$drop = &amp;quot;UPDATE students&amp;quot;;&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;$all = &amp;quot;SET grade=&amp;#39;A+&amp;#39;&amp;quot;; //PHP can use &amp;#39; inside &amp;quot;&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;$tables = &amp;quot;WHERE name=&amp;#39;miguel&amp;#39;&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;executeSQLStatement(drop . all . tables);&lt;/span&gt;
+
+&lt;span class=&quot;x&quot;&gt;//Will output &lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;//PHP Notice:  Use of undefined constant drop - assumed &amp;#39;drop&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;//PHP Notice:  Use of undefined constant all - assumed &amp;#39;all&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;//PHP Notice:  Use of undefined constant tables - assumed &amp;#39;tables&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;At first I thought this was a nice feature, until I realized it was turning my variable names into strings! &lt;img class=&#39;emoji&#39; title=&#39;:scream:&#39; alt=&#39;:scream:&#39; src=&#39;https://assets.github.com/images/icons/emoji/unicode/1f631.png&#39; height=&#39;20&#39; width=&#39;20&#39; align=&#39;absmiddle&#39; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Its nice that it attempts to recover from errors, but I think the reason this hasn&amp;#39;t caught on anywhere else is the disasterous consequences this can have. Best case the above code crashes, worst case it drops all your data &lt;img class=&#39;emoji&#39; title=&#39;:exclamation:&#39; alt=&#39;:exclamation:&#39; src=&#39;https://assets.github.com/images/icons/emoji/unicode/2757.png&#39; height=&#39;20&#39; width=&#39;20&#39; align=&#39;absmiddle&#39; /&gt;&lt;/p&gt;
+
+&lt;h4&gt;String Interpolation&lt;/h4&gt;
+
+&lt;p&gt;Neat feature that is found (among other places) in ruby, scala, swift and PHP.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-PHP&quot; data-lang=&quot;PHP&quot;&gt;&lt;span class=&quot;x&quot;&gt;$name = &amp;quot;miguel&amp;quot;;&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;echo &amp;quot;my name is $name&amp;quot;;&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;//prints &amp;quot;my name is miguel&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Discussion on the language tools&lt;/h2&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;The standard PHP library(SPL) is fairly good. Has many of the functions you would expect.&lt;/p&gt;
+
+&lt;p&gt;Using nodejs and PHP in tandem, I find the default standard libraries to be very similar. An example is the host of system processes available with functions like &lt;code&gt;mkdir()&lt;/code&gt; and &lt;code&gt;unlink()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Contains even basic data structures you can use:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;SPLDoubleLinkedList&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SPLStack&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SPLQueue&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SPLMaxHeap&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SPLMinHeap&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;others...&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There is a strong lack of stadard dev tools that come with PHP however, the community has filled the gap really nicely.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;PHPUnit - Most popular unit testing framework for PHP&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Composer - Package manager for PHP, great tool&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Symfony - Top to bottom fully featured framework for building webapps.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Laravel - Another fully featured web app framework.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Community&lt;/h2&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;PHP is very much still relevant today. The PHP Group regularly updates their project and relies strongly on community feedback.&lt;/p&gt;
+
+&lt;p&gt;The speed at which they update PHP to support new language staples is incredible.&lt;/p&gt;
+
+&lt;p&gt;For a language that started in 1994, it has managed to keep up with all modern language bells and whistles.&lt;/p&gt;
+
+&lt;p&gt;PHP5 was released in 2005 and it has gone through major changes. Looking at the &lt;a href=&quot;http://php.net/releases/&quot;&gt;release schedule&lt;/a&gt; there is a solid 1-2 month release cycle which is amazing for such an old language.&lt;/p&gt;
+
+&lt;p&gt;This &lt;a href=&quot;https://wiki.php.net/rfc/php6&quot;&gt;newest article&lt;/a&gt; was released end of 2014 and talks about the next major release with heavy emphasis on community feedback.&lt;/p&gt;
+
+&lt;p&gt;The most popular open source projects are those around frameworks of Symfony and Laravel discussed in the previous sections. These are general purpose but the one that gained large attention in the past 5 years would be &lt;a href=&quot;https://github.com/WordPress/WordPress&quot;&gt;Wordpress&lt;/a&gt; still under strong usage and development. &lt;/p&gt;
+
+&lt;h3&gt;Commit history for week of April 19th 2015&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/wordpress_commit_history_05-2015.png&quot; alt=&quot;Wordpress Commit History May 2015&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;Of course the PHP conversation wouldn&amp;#39;t be complete without involving &lt;a href=&quot;www.facebook.com&quot;&gt;Facebook&lt;/a&gt; which was a major advocate and proponent to PHP.&lt;/p&gt;
+
+&lt;p&gt;Facebook used many tricks to try and enhace the PHP workflow. They created HHVM which is a PHP compiler that runs the front end of facebook which of course gets millions of views a day.&lt;/p&gt;
+
+&lt;p&gt;If you&amp;#39;re so interested, the chief technical architect did a &lt;a href=&quot;www.infoq.com/presentations/php-history&quot;&gt;great presentation&lt;/a&gt; on why PHP is still relevant.&lt;/p&gt;
+
+&lt;p&gt;I personally agree with him, its not that bad..&lt;/p&gt;
+</description>
+        <pubDate>Sun, 19 Apr 2015 10:30:21 -0400</pubDate>
+        <link>objectivetruth.github.io/2015/04/19/CSCI3050-project-on-PHP.html</link>
+        <guid isPermaLink="true">objectivetruth.github.io/2015/04/19/CSCI3050-project-on-PHP.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Designing before you code</title>
+        <description>&lt;h2&gt;You Need a Game Plan&lt;/h2&gt;
+
+&lt;p&gt;When I made my first app, I took the naive approach of just starting to
+code and figuring it out as I went.&lt;/p&gt;
+
+&lt;p&gt;This is an absolutely retarded way to work&lt;/p&gt;
+
+&lt;p&gt;But, I would recommend it for anyone new to building an app or any
+project&lt;/p&gt;
+
+&lt;p&gt;Having gone through that train wreck of an experience and spending
+countless hours refactoring code over and over, I will say Design is
+absolutely paramount.&lt;/p&gt;
+
+&lt;h2&gt;Visual Design&lt;/h2&gt;
+
+&lt;p&gt;This is why most companies have a design team.&lt;/p&gt;
+
+&lt;p&gt;You do not want to keep remaking GUIs in code. It is MUCH easier to move
+a button a few pixels in Photoshop or even in Paint than in a live
+environment.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;#39;s the visual design mockup I ended up with.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.objectivetruth.ca/wp-content/uploads/2015/01/macUoitDCBooking_mainscreen-e1420300531473-651x1024.png&quot; alt=&quot;macUoitDCBooking_mainscreen&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;Looks really cruddy but I&amp;#39;ll explain a few important details I wrestled with:&lt;/p&gt;
+
+&lt;h3&gt;Hamburger Menu @ Top Left&lt;/h3&gt;
+
+&lt;p&gt;Android uses these heavily but its not common in Apple.&lt;/p&gt;
+
+&lt;p&gt;The problem is how do you put a menu so that you can access more
+features, without &amp;quot;hiding&amp;quot; too far from a user&amp;#39;s reach?&lt;/p&gt;
+
+&lt;p&gt;I settled on this because the other features aren&amp;#39;t used very often and
+if the user needs them they will hunt. I kept the important features
+front and center&lt;/p&gt;
+
+&lt;h3&gt;Information Button and My Account Button @ Bottom&lt;/h3&gt;
+
+&lt;p&gt;Apple loves Tab Toolbars which, is why their iPhones are so long. I
+personally hate this design because it uses a lot of screen real estate
+to keep these guys on screen ALL the time.&lt;/p&gt;
+
+&lt;p&gt;Regardless you have to think of your target audience. If you&amp;#39;re use to
+Apple&amp;#39;s design philosphy, this will seem normal so I decided to put
+these features down here instead of at the top like the android version.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;h3&gt;Logo @ Bottom Center&lt;/h3&gt;
+
+&lt;p&gt;I wanted to incorporate the Logo in somewhere and this was the most
+appropriate way according to apple.&lt;/p&gt;
+
+&lt;p&gt;The best design is the one you don&amp;#39;t notice (because its so simple)
+  &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;h2&gt;Technical Design&lt;/h2&gt;
+
+&lt;p&gt;This is so important but really only makes sense once you&amp;#39;ve been in
+the trenches and seen how things actually work. With my experience in
+android I know how MVC (model, view, controller) design philosophy works
+and I know what to expect.&lt;/p&gt;
+
+&lt;p&gt;In my mind I already have an idea of where certain code is going without
+having to power my way through it unknowing.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+</description>
+        <pubDate>Sat, 03 Jan 2015 00:00:00 -0500</pubDate>
+        <link>objectivetruth.github.io/ios%20programming/2015/01/03/designing-before-you-code.html</link>
+        <guid isPermaLink="true">objectivetruth.github.io/ios%20programming/2015/01/03/designing-before-you-code.html</guid>
+        
+        <category>iOS</category>
+        
+        <category>design</category>
+        
+        <category>hamburger</category>
+        
+        <category>mockup</category>
+        
+        
+        <category>ios programming</category>
+        
+      </item>
+    
+      <item>
+        <title>iOS Swift vs Android Java</title>
+        <description>&lt;h2&gt;In short, I like Swift&lt;/h2&gt;
+
+&lt;p&gt;Undoubtedly, a huge improvement over Objective-C(which looks like a
+nightmare) but I&amp;#39;ll focus more on Android Java.&lt;/p&gt;
+
+&lt;h2&gt;Things I like:&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Named Parameters&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Allows you to specify the name of the parameter in the function call.
+Code Readability just went through the roof! Check out this code snippet below&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;c1&quot;&gt;//Simple Area of rectangle calculator&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;printAreaOfRectangle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//the \ operator is an escape where you can insert&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//variables or functions to concatenate to the string&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Area is \(x*y)&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//Easy to see what&amp;#39;s going on here&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;printAreaOfRectangle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Classic example where you know you need to provide an X and Y value, but in what order? If i came back 6 months later to look at this code I&amp;#39;d have to delve in the documentation to know what I was trying to do. I think this comes from Javascript where you send in a JSON object with all the parameters you want used. Anyways great work Apple.
+Optionals&lt;/p&gt;
+
+&lt;p&gt;A return type that can be nil(an error), or something useful.&lt;/p&gt;
+
+&lt;p&gt;This has a huge effect on stability because the language requires you to handle the nil case somehow before you can reference the object inside. This is referred to checking before un-boxing. Check the code below:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;c1&quot;&gt;//Person&amp;#39;s residence variable is nil (a special null for iOS which means&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//&amp;quot;nothing here&amp;quot; mostly used to denote an error has occurred&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Person&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//residence is nil because we haven&amp;#39;t set it to something as yet&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//If we tried to access it, we&amp;#39;d have a crash&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;residence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Residence&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;?&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Residence&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numberOfRooms&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;miguel&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Person&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// the ! operator unboxes an optional&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//This is an example of what NOT to do. You need to check for nil before&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//unboxing&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;roomCountBad&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;miguel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;residence&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numberOfRooms&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//Checking for nil like this before unboxing&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;roomCountGood&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;john&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;residence&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numberOfRooms&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;John&amp;#39;s residence has \(roomCount) room(s).&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Unable to retrieve the number of rooms.&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Essentially, you use the ? after a variable to denote that its an optional, which tells the system that there&amp;#39;s a situation where it can be nil. This forces anyone using the function or variable later in the code to check for nil. It can be thought of as throwing an exception in Java, but much simpler.&lt;/p&gt;
+
+&lt;p&gt;If you&amp;#39;ve ever done Android Dev you know you need to CONSTANTLY be checking for null, even when there&amp;#39;s no possible way for a variable to be null, check it anyways
+Storyboard&lt;/p&gt;
+
+&lt;p&gt;Allows you to do ALOT of design through a GUI. I&amp;#39;m sure everyone has experienced the frustration of using the Android Visual Editor. The ease of which you can handle different device parameters and just plot down the flow of an app is incredible.&lt;/p&gt;
+
+&lt;p&gt;You can have the visual flow of an app done in a few minutes which this awesome tool.&lt;/p&gt;
+
+&lt;h2&gt;The Bad&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Restrictive&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;From a first look, everything feels very restrictive which is Apple&amp;#39;s mantra so I don&amp;#39;t blame them.
+Everything boils down to static screens with transitions between them.&lt;/p&gt;
+
+&lt;p&gt;On Android I felt so free to do whatever I wanted with fragments.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;#39;s an example of what I like about Android Fragments, maybe you can do the same on iOS but this is my limited view so far&lt;/p&gt;
+
+&lt;p&gt;From @cyrilmottier&amp;#39;s blog post: Custom Animations With Fragments&lt;/p&gt;
+
+&lt;p&gt;Overall, I really like swift and hope to unravel more of its secrets! Come at me Apple!&lt;/p&gt;
+</description>
+        <pubDate>Fri, 26 Dec 2014 00:00:00 -0500</pubDate>
+        <link>objectivetruth.github.io/ios%20programming/2014/12/26/ios-swift-vs-android-java.html</link>
+        <guid isPermaLink="true">objectivetruth.github.io/ios%20programming/2014/12/26/ios-swift-vs-android-java.html</guid>
+        
+        <category>Android</category>
+        
+        <category>iOS</category>
+        
+        <category>optionals</category>
+        
+        <category>named parameters</category>
+        
+        <category>cyril</category>
+        
+        <category>mottier</category>
+        
+        <category>swift</category>
+        
+        <category>java</category>
+        
+        
+        <category>ios programming</category>
+        
+      </item>
+    
+      <item>
+        <title>iOS Dev Requirements</title>
+        <description>&lt;h2&gt;Hardware Requirements&lt;/h2&gt;
+
+&lt;p&gt;After searching far and wide, it was tough to find an up to date guide
+on what I should buy. Here&amp;#39;s everything I ended up buying and I&amp;#39;ll
+explain why below:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://store.apple.com/ca/buy-mac/mac-mini&quot; title=&quot;Mac Mini&quot;&gt;Mac Mini - $749.00&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://store.apple.com/ca/buy-ipod/ipod-touch/16gb-space-grey&quot; title=&quot;ipod touch 16GB&quot;&gt;iPod Touch - $219.00&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Developer Account License - $ 99.00 / year&lt;/p&gt;
+
+&lt;h2&gt;Mac Mini&lt;/h2&gt;
+
+&lt;p&gt;You&amp;#39;re going to need at least 8GB of Ram, and because Apple doesn&amp;#39;t let
+you upgrade you need to buy this from them at a crazy 100$ for 4 GB to
+8GB upgrade, so you might as well go with the middle of the ground Mac
+Mini. Its 200$ more but if you&amp;#39;re going to upgrade to 8GB from the base
+model anyways, its very worth it.&lt;/p&gt;
+
+&lt;h3&gt;Why do you need so much RAM?&lt;/h3&gt;
+
+&lt;p&gt;If you&amp;#39;ve ever done development, you know you&amp;#39;re going to have a lot of
+big files open, this will each up your RAM like woah. 8GB is a good
+balance that will make your compile times much faster in the long run&lt;/p&gt;
+
+&lt;h2&gt;iPod Touch:&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;DON&amp;#39;T buy an old one from Kijiji&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The current gen as of writing is the 5th gen iPod Touch. iPods aren&amp;#39;t
+refreshed as fast as iPhones, so this is like an iPhone 4S which is
+pretty old right now. &lt;/p&gt;
+
+&lt;p&gt;If you were to get a 4th gen iPod Touch of Kijiji
+for like 100\$, its wayyy old and won&amp;#39;t support iOS 7 or 8 (i know
+right???). Unfortunately, there&amp;#39;s rumors of an iPod Touch refresh coming
+in a few months but I can&amp;#39;t wait that long so I plopped down the \$219
+now. Even if you get a used iPod 5th gen, it just won&amp;#39;t be the same and
+the ones initially released 2 years ago don&amp;#39;t have a camera, the new
+ones you buy have a camera.&lt;/p&gt;
+
+&lt;p&gt;To be honest, I hate this thing, its so slow and knowing I paid full
+price for a 2-3 year old product makes me sick, but its the cheapest
+option.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Just do it&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2&gt;Developer Account License&lt;/h2&gt;
+
+&lt;p&gt;You need this to debug your app on a physical device.&lt;/p&gt;
+
+&lt;p&gt;I know.. it SUCKS big time. WTF Apple??&lt;/p&gt;
+
+&lt;p&gt;The good news&lt;/p&gt;
+
+&lt;p&gt;If you&amp;#39;re a student you can see if your educational institute is part of
+Apple&amp;#39;s Education plan which is free and gives its students free
+developer accounts as long as they&amp;#39;re students.&lt;/p&gt;
+
+&lt;p&gt;Thankfully for me, University of Ontario Institute of Technology is part
+of the program, however I have to wait until school starts in a few
+weeks to join.&lt;/p&gt;
+
+&lt;p&gt;For now, the Emulator and i are going to be good friends.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 25 Dec 2014 00:00:00 -0500</pubDate>
+        <link>objectivetruth.github.io/ios%20programming/2014/12/25/ios-dev-requirements.html</link>
+        <guid isPermaLink="true">objectivetruth.github.io/ios%20programming/2014/12/25/ios-dev-requirements.html</guid>
+        
+        <category>iOS</category>
+        
+        <category>mac</category>
+        
+        <category>mini</category>
+        
+        <category>ipod touch</category>
+        
+        <category>license</category>
+        
+        <category>education program</category>
+        
+        <category>kijiji</category>
+        
+        
+        <category>ios programming</category>
+        
+      </item>
+    
+      <item>
+        <title>Embarking on iOS</title>
+        <description>&lt;h2&gt;Why learn iOS?&lt;/h2&gt;
+
+&lt;p&gt;Learning Android has been very rewarding and after sharing my success
+with my professors, they had suggested I learn iOS to round out my
+skills. The biggest draw was the potential earnings from learning both
+languages. I even went ahead and did some research on job potential for
+both and individual. This is what I found:&lt;/p&gt;
+
+&lt;p&gt;Indeed Search for Android Developer in Toronto&lt;/p&gt;
+
+&lt;p&gt;Indeed Search for Android and iOS Developer in Toronto&lt;/p&gt;
+
+&lt;p&gt;There was 344 jobs for Android Developer and 244 for Android and iOS as
+of writing this. However, the pay increase seems to be higher (this is
+looking through just a few postings).&lt;/p&gt;
+
+&lt;p&gt;If you put yourself in a Company Owner&amp;#39;s shoes I can see why. If you
+need to have presence on all the major phone platforms, you could hire 2
+people to each do iOS and Android. Apart from the cost of it, the
+biggest issue with this approach is the consistency of Visual Design. If
+you have a lead platform, then you will always have a second rate
+citizen style product on the other platforms.&lt;/p&gt;
+
+&lt;h2&gt;A Word on Branding&lt;/h2&gt;
+
+&lt;p&gt;Whenever you make a multi-platform app, there&amp;#39;s 2 options:&lt;/p&gt;
+
+&lt;p&gt;Localize your app to the platform&lt;/p&gt;
+
+&lt;p&gt;Globalize your app to look the same on both platforms&lt;/p&gt;
+
+&lt;p&gt;The best approach is to Localize your app to the platform so that your
+users aren&amp;#39;t completely confused when they go to open it. There are
+certain tropes that have been taught to users on each platform that they
+expect when they use an app. When the app doesn&amp;#39;t make use of this, they
+feel confused and overall frustrated, ultimately never opening up the
+app again.&lt;/p&gt;
+
+&lt;p&gt;An example is the Microsoft Office products when they first came out for
+Android and iPhone. Microsoft (to I&amp;#39;m sure great cost and time) tried to
+bring their Metro stylings from Windows Phone to their Android and
+iPhone Office counterparts. &lt;/p&gt;
+
+&lt;p&gt;If you look at their reviews from then, they
+were horrible. It was so strange to open an app on an iPhone or Android
+and see this alien metro icons that you&amp;#39;ve never seen before.&lt;/p&gt;
+
+&lt;p&gt;Visual Design is said to be at its best when nobody notices; it&amp;#39;s often
+described as a feeling.&lt;/p&gt;
+
+&lt;p&gt;This is ridiculously important when making an App who is essentially
+your company&amp;#39;s spokesperson.&lt;/p&gt;
+
+&lt;p&gt;Join me as I delve into iOS development coming from an Android
+background...&lt;/p&gt;
+</description>
+        <pubDate>Thu, 25 Dec 2014 00:00:00 -0500</pubDate>
+        <link>objectivetruth.github.io/ios%20programming/2014/12/25/embarking-on-ios.html</link>
+        <guid isPermaLink="true">objectivetruth.github.io/ios%20programming/2014/12/25/embarking-on-ios.html</guid>
+        
+        <category>iOS</category>
+        
+        <category>localize</category>
+        
+        <category>multi-platform</category>
+        
+        <category>earnings</category>
+        
+        <category>indeed</category>
+        
+        
+        <category>ios programming</category>
+        
+      </item>
+    
+      <item>
+        <title>Fountain Codes - History Lesson</title>
+        <description>&lt;p&gt;Fountain Codes are also called rateless erasure codes. This means there
+isn&amp;#39;t a fixed number of symbols for the original message. Theoretically
+there is an infinite number of symbols that can be used in the original
+message and you still only need  a few more symbols to recreate the
+original message.&lt;/p&gt;
+
+&lt;p&gt;Before rateless erasure codes, there was just erasure codes which was a
+type of forward error correction. It was originally pioneered to
+transmit information over very noisy or unreliable networks.&lt;/p&gt;
+
+&lt;p&gt;In 1950 the first error correction code was developed called the Hamming
+code.&lt;/p&gt;
+
+&lt;p&gt;The original problem is an interesting one when thinking of a future in
+space where information transmitting can be very unreliable.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+</description>
+        <pubDate>Mon, 24 Nov 2014 00:00:00 -0500</pubDate>
+        <link>objectivetruth.github.io/fountaincode/2014/11/24/fountain-codes-history-lesson.html</link>
+        <guid isPermaLink="true">objectivetruth.github.io/fountaincode/2014/11/24/fountain-codes-history-lesson.html</guid>
+        
+        
+        <category>fountaincode</category>
+        
+      </item>
+    
+      <item>
+        <title>Fountain Code - The Beginnings</title>
+        <description>&lt;p&gt;Miguel and I, Shaine, have been given the topic on algorithms.  From
+hours of scouting the net we came across Fountain Coding.  Before
+getting into the heavy details of what this is the basic concept can be
+described as a depressing day in the rain.&lt;/p&gt;
+
+&lt;p&gt;You are holding a bucket while standing outside in the rain with no
+umbrella. The bucket must be filled up to a certain amount and you must
+hold it in place until you have enough water to fill said bucket. In
+this scenario the rain acts as the Fountain Code and the bucket is the
+network receiver.  Each droplet is a packet being sent to the receiver
+and in the standard protocol for sending packets there is a rate loss of
+packets. This means that packets will be sent and can end up not
+reaching the destination thus terminating the transmission.  With
+Fountain Coding the packets are guaranteed to get to the receiver
+because of the limitless amount of transmissions it does. In other
+words, the droplets that miss the bucket dissipate, and then there are
+new droplets of either the exact same weight or different are sent again
+to the bucket until the bucket relays that it has received as much as it
+needs to make up the amount.&lt;/p&gt;
+
+&lt;p&gt;This is the basic concept of Fountain Coding to our understanding.  In
+the future, we will talk about the different types that follow under
+Fountain Coding such as, LT Code and Raptor Code.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 24 Nov 2014 00:00:00 -0500</pubDate>
+        <link>objectivetruth.github.io/fountaincode/2014/11/24/fountain-code-the-beginnings.html</link>
+        <guid isPermaLink="true">objectivetruth.github.io/fountaincode/2014/11/24/fountain-code-the-beginnings.html</guid>
+        
+        
+        <category>fountaincode</category>
+        
+      </item>
+    
+      <item>
+        <title>Why Check for null?</title>
+        <description>&lt;h2&gt;Intro&lt;/h2&gt;
+
+&lt;p&gt;I&amp;#39;m fairly active over at r/androiddev and someone asked about why check for null? &lt;/p&gt;
+
+&lt;p&gt;I remember asking the same questions when I first started but after a
+while it just becomes part of your every day routine with android, check
+out how and when to check for null&lt;/p&gt;
+
+&lt;p&gt;I&amp;#39;ve seen a common complain between the android and iPhone dev community
+that iPhone you don&amp;#39;t have to check for null, when you need or reference
+something that you except it always returns it (guaranteed apparently).&lt;/p&gt;
+
+&lt;p&gt;On android, the system is much more complex and with increase complexity
+means more points of failure.&lt;/p&gt;
+
+&lt;p&gt;(shout out to crunchify for the featured image)&lt;/p&gt;
+
+&lt;h2&gt;Why check for null in the first place?&lt;/h2&gt;
+
+&lt;p&gt;Bottom line, checking for null avoids unsightly NPE(null pointer
+exceptions) when your user does something you never expected or even the
+system didn&amp;#39;t expect would ever happen.&lt;/p&gt;
+
+&lt;p&gt;In the reddit comment I answered, the example was using Google&amp;#39;s AdMob
+with an adView. Below is the sample code, the question and my response:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;google&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;example&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;gms&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ads&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;banner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;com.google.android.gms.ads.AdRequest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;com.google.android.gms.ads.AdSize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;com.google.android.gms.ads.AdView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;android.app.Activity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;android.os.Bundle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;android.widget.LinearLayout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;cm&quot;&gt;/**&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;     * A simple {@link Activity} that embeds an AdView.&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;     */&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;BannerSample&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Activity&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;cm&quot;&gt;/** The view to show the ad. */&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AdView&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;adView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;cm&quot;&gt;/* Your ad unit id. Replace with your actual ad unit id. */&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AD_UNIT_ID&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;INSERT_YOUR_AD_UNIT_ID_HERE&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;cm&quot;&gt;/** Called when the activity is first created. */&lt;/span&gt;
+      &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Bundle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;savedInstanceState&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;savedInstanceState&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;setContentView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;activity_main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// Create an ad.&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;adView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;AdView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;adView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setAdSize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AdSize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;BANNER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;adView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setAdUnitId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AD_UNIT_ID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// Add the AdView to the view hierarchy. The view will have no size&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// until the ad is loaded.&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;LinearLayout&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;layout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LinearLayout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;findViewById&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;linearLayout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;adView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// Create an ad request. Check logcat output for the hashed device ID to&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// get test ads on a physical device.&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;AdRequest&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;adRequest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AdRequest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Builder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addTestDevice&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AdRequest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;DEVICE_ID_EMULATOR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addTestDevice&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;INSERT_YOUR_HASHED_DEVICE_ID_HERE&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// Start loading the ad in the background.&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;adView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;loadAd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;adRequest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onResume&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onResume&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;adView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;adView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;resume&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onPause&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;adView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;adView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;pause&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onPause&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;cm&quot;&gt;/** Called before the activity is destroyed. */&lt;/span&gt;
+      &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onDestroy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// Destroy the AdView.&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;adView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;adView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;destroy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onDestroy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;The question&lt;/h2&gt;
+
+&lt;p&gt;I am curious why are you doing &lt;code&gt;if (adView !=null) adView.destory();&lt;/code&gt; and likewise for all activity calls. I have seen that before. 
+I checked Android reference on &lt;code&gt;AdView&lt;/code&gt; and it just calls &lt;code&gt;mAdView.pause();&lt;/code&gt;, &lt;code&gt;mAdView.destroy();&lt;/code&gt;, etc.&lt;/p&gt;
+
+&lt;h2&gt;My response:&lt;/h2&gt;
+
+&lt;p&gt;This is just good practice. Its a common complaint with android that even though you think something will NEVER, ever, EVER! be null.. there will be some fringe case where it will be null and the user will get an unsightly crash (wop wonnn...)&lt;/p&gt;
+
+&lt;p&gt;You should especially do this when you&amp;#39;re working with Views, or activities, or well lots of things. Lets say there&amp;#39;s a moment when an activity is queued to be destroyed and the add is still loading, and the ad(being a good citizen) takes it upon itself to self destruct.&lt;/p&gt;
+
+&lt;p&gt;By the time the onDestroy gets called, your adView no longer exists. So when adView.destroy() gets called, you&amp;#39;ll get a NPE(null pointer exception).&lt;/p&gt;
+
+&lt;p&gt;When I first started I didn&amp;#39;t understand it either, but the more you do live apps you&amp;#39;ll get these very strange NPEs that can be avoided by checking for null.&lt;/p&gt;
+
+&lt;h2&gt;When and where to check for nulls?&lt;/h2&gt;
+
+&lt;p&gt;I&amp;#39;ve come to the conclusion that you should check whenever you receive a reference for something you did NOT control, is transient(can be destroyed at any time),  or is not a system Singleton. Examples of places you must check for null (not exhaustive list):&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Views&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Activities&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Fragments&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Strings&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Intents Bundles&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Something important to note is when referencing an activity from within a listener. This you have to be very careful with.. are you sure it has to be there?&lt;/p&gt;
+
+&lt;h3&gt;Can the activity be destroyed before the listener has been called or destroyed?&lt;/h3&gt;
+
+&lt;p&gt;Examples of where not to check for nulls:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;AppWidgetManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&amp;lt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;li&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getSystemService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ALARM_SERVICE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;PreferenceManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getDefaultSharedPreferences&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The list of what not to check is fairly large but you can get the idea, a system service is something the system controls and there is always at LEAST 1 of them.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 28 Jul 2014 00:00:00 -0400</pubDate>
+        <link>objectivetruth.github.io/tutorial/2014/07/28/why-check-for-null.html</link>
+        <guid isPermaLink="true">objectivetruth.github.io/tutorial/2014/07/28/why-check-for-null.html</guid>
+        
+        <category>Android</category>
+        
+        <category>NPE</category>
+        
+        <category>null pointer exception</category>
+        
+        <category>adMob</category>
+        
+        <category>adView</category>
+        
+        <category>Singleton</category>
+        
+        <category>reddit</category>
+        
+        
+        <category>tutorial</category>
+        
+      </item>
+    
+      <item>
+        <title>PendingIntents, Dalvik, and RemoteViews</title>
+        <description>&lt;h2&gt;Intro&lt;/h2&gt;
+
+&lt;p&gt;I&amp;#39;m almost at the end of making the widget, but I&amp;#39;m going back to some
+things I&amp;#39;ve learned on my way. Also, I&amp;#39;m hoping to get access to the
+glympse inner workings to make the widget even better but that&amp;#39;s to come
+later.&lt;/p&gt;
+
+&lt;h2&gt;Widget, Remote Views and Dalvik&lt;/h2&gt;
+
+&lt;p&gt;First things you must understand:&lt;/p&gt;
+
+&lt;p&gt;Dalvik is the Android Virtual Machine. It basically handles your
+code when it executes.&lt;/p&gt;
+
+&lt;p&gt;Each application is given its own process that it can manage. Normally
+all your code for a simple app runs in its own process (example:
+com.objectivetruth.uoitdcbooking).&lt;/p&gt;
+
+&lt;p&gt;HOWEVER, widgets are a bit different. The code executes in your own
+process (com.objectivetruth.glympsewidget in my case) BUT the VIEW is
+handled by the Home Screen Process or Lock Screen Process
+(depending where the widget resides).&lt;/p&gt;
+
+&lt;p&gt;Now, for security reasons you can&amp;#39;t access things that are part of
+another process. This is good, but we have to find a way around it...&lt;/p&gt;
+
+&lt;p&gt;When you want to update your Widget&amp;#39;s View you need to use a
+RemoteView&lt;/p&gt;
+
+&lt;p&gt;RemoteViews are NOT Views. They are a set of configurations and
+functions that execute the request on your behalf.
+ Example:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;//Getting instance of the AppWidgetManager who will actually change the&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//view on your behalf.&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;AppWidgetManager&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;appWidgetManager&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AppWidgetManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//Create a RemoteView targeting your Widget&amp;#39;s Layout&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;RemoteViews&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;views&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;RemoteViews&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getPackageName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//RemoteViews has a set of commands for common view requests&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//Here, we are changing the Text of a TextView in the R.layout.main layout&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;views&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setTextViewText&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;textview1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;updated text&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//Because the View doesn&amp;#39;t belong to your process you need the App Widget&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//Manager to do it on your behalf&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;appWidgetManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;updateAppWidget&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;appWidgetId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;views&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;PendingIntents and Broadcasts&lt;/h2&gt;
+
+&lt;p&gt;First, why would you use this?&lt;/p&gt;
+
+&lt;p&gt;These are Implicit Intents are are used when you want a widget to send a message to itself. Such as a button click to have the widget launch a webpage. More on this in the next post. (Big topic). OnClickListener is a perfect example of all of this.  &lt;/p&gt;
+
+&lt;p&gt;Usage PendingIntents&amp;gt; are intents that are executed on your behalf. They basically allow you to temporarily give another process permission to use your code. This has to do with the above because Dalvik doesn&amp;#39;t let other apps do things to your apps unless you authorize it, hence PendingIntents are born.
+ 
+Best analogy I can think of is customs paperwork for a car being transported&lt;/p&gt;
+
+&lt;p&gt;The paperwork (PendingIntent) allows other processes to execute/use your Intent(the car). The car(your Intent) won&amp;#39;t be able to go with anyone unless they have paperwork (PendingIntent) attached.&lt;/p&gt;
+
+&lt;p&gt;You get a PendingIntent by calling getBroadCast(). This is like looking through all the filling cabinets at the customs office to see if that paperwork has already been done. If it has, then just get an instance of it, otherwise create a new one.&lt;/p&gt;
+
+&lt;p&gt;This is very important when working with multiple remote views or multiple widget instances (this will be in another post...). For now we&amp;#39;re working with 1 widget.
+ 
+The below code illustrates Broadcast, pending intents nicely when you want to setOnClick behavior for a RemoteView such as a widget to update itself.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;//Create an Intent as normal with the action being something you can&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//catch later in the appropriate activity, more on that below.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//I suggest using something unique such as com.my.packagename.action&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Intent&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myIntent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Intent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;com.my.packagename.action&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//Create a PendingIntent by calling getBroadcast&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;PendingIntent&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pendingClearScreenIntent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PendingIntent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBroadcast&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clearScreenIntent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PendingIntent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;FLAG_UPDATE_CURRENT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//RemoteView created earlier&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;views&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setOnClickPendingIntent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;clearbutton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pendingClearScreenIntent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//then pass off the RemoteView to the AppWidgetManager&amp;lt;/pre&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Catching the PendingIntent&lt;/h2&gt;
+
+&lt;p&gt;In the android manifest here is where you catch the PendingIntent and send it to the AppWidgetProvider&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;    android:name=&amp;quot;.ApplicationGlympseWidget&amp;quot;
+    android:icon=&amp;quot;@drawable/ic_launcher&amp;quot;
+    android:label=&amp;quot;@string/app_name&amp;quot;
+    android:theme=&amp;quot;@style/AppTheme&amp;quot; &amp;gt;
+
+
+
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/intent-filter&amp;gt;&lt;/span&gt;
+
+            android:resource=&amp;quot;@xml/widget_info&amp;quot;/&amp;gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/receiver&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; 
+I&amp;#39;ll write a whole post on AppWidgetProvider but here&amp;#39;s a great starter tutorial to get you up to speed&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=p_ZjPb_opVQE&quot;&gt;&lt;img src=&quot;http://img.youtube.com/vi/p_ZjPb_opVQ/0.jpg&quot; alt=&quot;&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Mon, 07 Jul 2014 00:00:00 -0400</pubDate>
+        <link>objectivetruth.github.io/glympsewidget/2014/07/07/pendingintents.html</link>
+        <guid isPermaLink="true">objectivetruth.github.io/glympsewidget/2014/07/07/pendingintents.html</guid>
+        
+        <category>PendingIntent</category>
+        
+        <category>Dalvik</category>
+        
+        <category>RemoteViews</category>
+        
+        <category>Permissions</category>
+        
+        <category>paperwork</category>
+        
+        <category>customs</category>
+        
+        <category>broadcast</category>
+        
+        <category>Intent</category>
+        
+        <category>filter</category>
+        
+        
+        <category>glympsewidget</category>
+        
+      </item>
+    
+  </channel>
+</rss>

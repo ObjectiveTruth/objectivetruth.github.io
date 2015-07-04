@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Dedicated Prop Hunt Server Setup (Windows) Part I (Getting Started)</title>
+  <meta name="description" content="Introduction">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="objectivetruth.github.io/tutorial/2014/03/24/dedicated-prop-hunt-server-setup-windows-part-i.html">
+  <link rel="alternate" type="application/rss+xml" title="Nothing but the Objectivetruth" href="objectivetruth.github.io/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Nothing but the Objectivetruth</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Dedicated Prop Hunt Server Setup (Windows) Part I (Getting Started)</h1>
+    <p class="post-meta">Mar 24, 2014</p>
+  </header>
+
+  <article class="post-content">
+    <h2>Introduction</h2>
+
+<p>Thanks to many popular gaming channel including SeaNanners people
+have been looking for a way to setup a server and get in on
+the fun. What got me into it was Prop-Hunt and setting it up wasn&#39;t
+quite so easy, but once it was done, it was hilarious the
+amount of fun you can have. I figure a guide would be good
+since all the guides I found were outdated and had alot of
+quirks you had to find out on your own.</p>
+
+<p>I broke this up into 2 sections, <strong>theory</strong> and <strong>practical</strong>. If it were me
+reading this I would jump into practical and only when I got stuck would
+I read the theory to figure out what </p>
+
+<p>I did wrong. It&#39;ll take some patience but once you get it working, its a hilariously good
+time!</p>
+
+<h2>Practical - Windows Dedicated Gmod Server</h2>
+
+<p> </p>
+
+<ol>
+<li><p>Download SteamCMD from the <a href="https://developer.valvesoftware.com/wiki/SteamCMD" title="SteamCMD - Valve Developer Community Page">Valve Developer Community
+Page (you can read about it using that link) or here&#39;s
+the</a>direct
+link to the windows file</p></li>
+<li><p>Extract the files into whatever folder in your C drive (I put mine
+in <code>c:\steamcmd</code>)</p></li>
+<li><p>Run <code>steamcmd.exe</code> and wait for everything to load and give you a
+prompt</p></li>
+<li><p>Type <code>login anonymous</code> without the quotes</p></li>
+<li><p>Type <code>force\install\dir C:\</code> will be where the GmodDedicated Server will go (I did <code>c:\GmodDS</code>)</p></li>
+<li><p>Type <code>app\update 4020 validate</code> and wait for it to install (can take like an hour, depending on internet
+connection speed).</p></li>
+</ol>
+
+<p>You can close steamcmd it once its done</p>
+
+<ol>
+<li><p>Download the Prop Hunt server files from <a href="https://github.com/xspacesoft/PropHunt" title="xspacesoft PropHunt GitHub">github
+or use
+this</a>direct
+link</p></li>
+<li><p>When you extract the files from step 7, you will see 2 folders,
+sounds and gamemodes (ignore the other files, that&#39;s used for github
+stuff). Extract the 2 folders so they reside in
+<code>c:\garrysmod\</code> (from step 5). In my case the sounds and gamemods
+directory ended up in <code>c:\GmodDS\garrysmod\</code></p></li>
+</ol>
+
+<p>The sounds and gamemodes file structure should look something like this(murder and terrortown are gamemodes I added after along with other sounds)</p>
+
+<p><img src="http://www.objectivetruth.ca/wp-content/uploads/2014/03/sounds_file_structure_gmodDS1.png" alt="sounds\_file\_structure\_gmodDS">
+<img src="http://www.objectivetruth.ca/wp-content/uploads/2014/03/gamemodes_file_structure_gmodDS1.png" alt="gamemodes\_file\_structure\_gmodDS"></p>
+
+<ol>
+<li>Make a shortcut for <code>srcds.exe</code> (its in the directory from step 5),
+and click properties on the shortcut you just made.</li>
+</ol>
+
+<p>add the following after <code>srcds.exe -game garrysmod  +gamemode prophunt</code></p>
+
+<p><img src="http://www.objectivetruth.ca/wp-content/uploads/2014/03/srcds_shortctu_properties_prop_hunt.png" alt="srcds\_shortctu\_properties\_prop\_hunt"></p>
+
+<ol>
+<li>Run the shortcut, edit what you like, and press Start
+Server: Voila! Dedicated Server up and Running. Below are a
+few Frequently asked questions.</li>
+</ol>
+
+<h2>Frequently Asked Questions (FAQ)</h2>
+
+<ul>
+<li>Friends can&#39;t see and/or join my server</li>
+</ul>
+
+<p>This is almost for sure because of port issues. 2 options (A) read a basic networking book or (B) go to portforwarding.com</p>
+
+<ul>
+<li><p>How to I setup a password for my server
+Check out my 4nd part to this guide</p></li>
+<li><p>I can&#39;t pickup props as Hunter or turn on my flashlight
+Check out my 4rth part to this guide</p></li>
+<li><p>How do I add new maps, do more advanced features?
+Check out my 2nd part to this guide</p></li>
+</ul>
+
+<p> </p>
+
+<h2>Theory (more advanced)</h2>
+
+<p> </p>
+
+<ul>
+<li>What is Gmod? </li>
+</ul>
+
+<p>It&#39;s a completely stand alone game that just happens to be made as a mod of Half-Life.</p>
+
+<ul>
+<li>What is Prop-Hunt? </li>
+</ul>
+
+<p>It&#39;s a mod (gamemode) of Gmod.</p>
+
+<p>Completely dissociate Half-Life and Gmod in your head, because it
+screwed me up when trying to figure out how to setup the server.\</p>
+
+<p>You are running a Gmod Server which allows multiple
+gamemodes, one of which is Prop-Hunt (sandbox is the standard
+Gmod gamemode).</p>
+
+<p>Each type of mod requires certain files and go into particular
+directories:\</p>
+
+<ul>
+<li><p>sounds = <code>\sounds\</code></p></li>
+<li><p>gamemodes = <code>\gamemodes\</code></p></li>
+<li><p>maps = <code>\maps\</code></p></li>
+</ul>
+
+<p>Steam workshop downloads files and puts them in packages (like a .zip)
+called addons. Makes it easier to add/remove.</p>
+
+<p>So if you want to add something to the server you have to either
+extract the files and put them in the appropriate directory
+or get an auth key (I&#39;ll show that in part II)</p>
+
+<p>In the steam workshop (as of writing this) there are 2-3 different
+PropHunt versions. The gitHub link above is meant to be for the most
+actively updated one and the one I think is the best. Also,
+you&#39;re getting it right from github, so its always up to
+date. I&#39;ll put it in another guide on how to keep
+things updated.</p>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Nothing but the Objectivetruth</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Nothing but the Objectivetruth</li>
+          <li><a href="mailto:miguel@objectivetruth.ca">miguel@objectivetruth.ca</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/Objectivetruth">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">Objectivetruth</span>
+            </a>
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">Musing from a mature student with a background in Sales, Biosciences and now Computer Science. Trying to save the world one app at a time.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
