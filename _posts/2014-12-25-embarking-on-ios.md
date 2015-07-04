@@ -12,19 +12,23 @@ tags:
 - earnings
 - indeed
 ---
-##Why learn iOS?
-
 Learning Android has been very rewarding and after sharing my success
 with my professors, they had suggested I learn iOS to round out my
-skills. The biggest draw was the potential earnings from learning both
+skills. 
+
+##Why learn iOS?
+
+The biggest draw was the potential earnings from learning both
 languages. I even went ahead and did some research on job potential for
-both and individual. This is what I found:
+both and individual. 
 
-Indeed Search for Android Developer in Toronto
+This is what I found based on:
 
-Indeed Search for Android and iOS Developer in Toronto
+* Indeed Search for Android Developer in Toronto
 
-There was 344 jobs for Android Developer and 244 for Android and iOS as
+* Indeed Search for Android and iOS Developer in Toronto
+
+There was **344** jobs for Android Developer and **244** for Android and iOS as
 of writing this. However, the pay increase seems to be higher (this is
 looking through just a few postings).
 

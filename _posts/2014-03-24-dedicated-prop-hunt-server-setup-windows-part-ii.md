@@ -12,8 +12,6 @@ tags:
 - maps
 - mods
 ---
-##Introduction
-
 Now that we have a server up and running and your friends have begun to
 join and see how cruddy it is without anything too interesting lets move
 onto adding mods (maps, sounds, gamemodes, etc..)

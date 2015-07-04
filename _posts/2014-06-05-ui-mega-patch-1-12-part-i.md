@@ -14,14 +14,15 @@ tags:
 - burns
 - xml
 ---
-##Intro
-
-Haven't written a post in a while since I've been so busy on this
-update. I got recharged by having a couple new downloaders (that weren't
-close friends) and had a lot of feedback on user experience.
-
 Here are few topics that I've been reading up on that are quite
 interesting
+
+I got recharged by having a couple new downloaders (that weren't
+close friends) and had a lot of feedback on user experience
+
+Haven't written a post in a while since I've been so busy on this
+update
+
 
 ##KenBurnsView
 

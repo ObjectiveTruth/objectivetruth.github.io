@@ -12,6 +12,8 @@ tags:
 - new
 - project
 ---
+Musings on working on a new project to learn about how widgets work with Glympse
+
 ##Intro
 
 I was trying to figure out what a good new project would be for a while

@@ -14,13 +14,12 @@ tags:
 - Singleton
 - reddit
 ---
+I asked the same questions when I first started, now its part of your every day 
+routine with android, check out how and when to check for null
+
 ##Intro
 
 I'm fairly active over at r/androiddev and someone asked about why check for null? 
-
-I remember asking the same questions when I first started but after a
-while it just becomes part of your every day routine with android, check
-out how and when to check for null
 
 I've seen a common complain between the android and iPhone dev community
 that iPhone you don't have to check for null, when you need or reference

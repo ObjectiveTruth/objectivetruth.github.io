@@ -11,11 +11,11 @@ tags:
 - StickyHeaders
 - Android
 ---
-##Intro
-
 Huge success on the calendar home page today. Was losing steam because
 of how much the old calendar view had gotten mega crowded and just
 generally wasn't too thrilled with the way it looked.
+
+##Intro
 
 My google-foo kicked in and I found exactly what I was looking for here
 called "sticky headers" where a certain header doesn't move in relation

@@ -20,12 +20,12 @@ tags:
 - pickup
 - config
 ---
+I recommend murderer, its super fun with a group of people.
+
 ##Introduction
 
 You should have a good grip on alot of the functionality by now, and I
 added this part just to add a few extras I found out along the way. BTW
-
-I recommend murderer, its super fun with a group of people.
 
 ![garrysmod\_prophunt\_mainpic](http://www.objectivetruth.ca/wp-content/uploads/2014/03/garrysmod_prophunt_mainpic.jpg)
 

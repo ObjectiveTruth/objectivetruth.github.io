@@ -11,14 +11,13 @@ tags:
 - keygen
 - proguard
 ---
-##Intro
-
-AAAhhhhh yissss.
-
 App is complete coding wise and did a dry run of the entire config
 process which I will detail below. The only thing left is the app icon
 which I contracted out on Fiverr. I'll write more on that when the
 finished app icon comes in. I'm excited to use it for the first time.
+
+##Intro
+AAAhhhhh yissss.
 
 So, the final ability to join pre-precreated rooms is done and the final
 section was going through the check list. Here are the major steps and

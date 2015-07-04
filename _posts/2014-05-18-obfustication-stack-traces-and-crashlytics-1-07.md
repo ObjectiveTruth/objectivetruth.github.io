@@ -15,8 +15,6 @@ tags:
 - GPU
 - profiling
 ---
-##Intro
-
 Haven't written in a little while now that the app is out and working
 as "mostly" intended. There are a few things I want to mention though
 that differs when working with a published app.

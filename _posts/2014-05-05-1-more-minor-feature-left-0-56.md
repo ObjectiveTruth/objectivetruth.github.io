@@ -13,13 +13,13 @@ tags:
 - Sugar
 - Synchronized
 ---
-##Intro
-
 After heavy testing, I'm quite certain you can't crash the program
 unless you are actively playing with the code or doing something you
 shouldn't be.. actually even then I don't think you could crash it. I
 spent a huge amount of time getting GoogleAnalytics to work and man is
 it ever cool.
+
+##Intro
 
 The biggest problem I find with Comp Sci (also the most rewarding) is
 that things move so fast that by the time you try to learn something,

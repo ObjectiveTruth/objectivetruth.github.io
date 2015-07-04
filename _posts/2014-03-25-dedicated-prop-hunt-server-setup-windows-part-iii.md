@@ -14,8 +14,6 @@ tags:
 - Ulx
 - ULib
 ---
-##Introduction
-
 Now that you have maps, mods, sounds and whatever craziness you found
 in the workshop working, you'll probably want to get more control over
 what happens on your server while its running. This is where ULX comes

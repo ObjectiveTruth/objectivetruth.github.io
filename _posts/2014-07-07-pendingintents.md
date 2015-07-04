@@ -16,6 +16,8 @@ tags:
 - Intent
 - filter
 ---
+My most popular blog post on the subject of intents, widgets and permissions.
+
 ##Intro
 
 I'm almost at the end of making the widget, but I'm going back to some

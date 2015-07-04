@@ -13,11 +13,11 @@ tags:
 - setError
 - Google Analytics
 ---
-##Intro
-
 So many topics I had to put this in another post. Working with
 optimization has been a huge headache because of my lack of experience a
 the time. My code has evolved so much since then.
+
+##Intro
 
 One of the biggest grippes I noticed when people using my app was the
 load time for the refresh. At first I was proud to get it down to about

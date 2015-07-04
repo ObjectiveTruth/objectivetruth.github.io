@@ -11,15 +11,15 @@ tags:
 - Dedicated
 - Server
 ---
-##Introduction
-
- Thanks to many popular gaming channel including SeaNanners people
+Thanks to many popular gaming channel including SeaNanners people
 have been looking for a way to setup a server and get in on
 the fun. What got me into it was Prop-Hunt and setting it up wasn't
 quite so easy, but once it was done, it was hilarious the
 amount of fun you can have. I figure a guide would be good
 since all the guides I found were outdated and had alot of
 quirks you had to find out on your own.
+
+##Introduction
 
 I broke this up into 2 sections, **theory** and **practical**. If it were me
 reading this I would jump into practical and only when I got stuck would

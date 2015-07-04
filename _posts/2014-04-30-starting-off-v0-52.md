@@ -13,7 +13,9 @@ tags:
 - mercury
 - '0.52'
 ---
-![crashedandroid](http://www.objectivetruth.ca/wp-content/uploads/2014/04/crashedandroid.png)
+Tons of hurdles I've had to go through and still many more to come. I'll
+throw the patch notes below and I'll write up on what I've been working
+on related to it, mostly for fun and for posterity.
 
 ##Intro
 
@@ -21,9 +23,7 @@ After lots of trouble shooting and seeing the above screen for the
 millionth time I'm comfortable enough to post up the fairly stable
 version of the UOITLibraryBooking app i've been working on.
 
-Tons of hurdles I've had to go through and still many more to come. I'll
-throw the patch notes below and I'll write up on what I've been working
-on related to it, mostly for fun and for posterity.
+![crashedandroid](http://www.objectivetruth.ca/wp-content/uploads/2014/04/crashedandroid.png)
 
 Plus feel free to comment. I doubt anyone will actually download it but
 heck, it'd be cool to just give it a try and all this is really just to

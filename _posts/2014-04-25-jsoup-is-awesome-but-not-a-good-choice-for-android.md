@@ -11,12 +11,12 @@ tags:
 - slow
 - hatred
 ---
-##Rant
-
 I've been doing a lot of android programming lately and decided to take
 on a screen scraping project for my school's library booking system so
 anyone can use the functionality of the dated website without having to
 use the dated website.
+
+##Rant
 
 To do the screen scraping I chose Jsoup, seemed lightweight, highly
 recommended and simple to use once you learn the select search tags.

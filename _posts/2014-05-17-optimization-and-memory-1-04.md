@@ -13,8 +13,6 @@ tags:
 - leak
 - memory
 ---
-##Intro
-
 Now that the app has been out for a bit and gotten a few downloads I
 started to get a couple crash reports back with all sorts of weird stuff
 I never experienced in testing. 
