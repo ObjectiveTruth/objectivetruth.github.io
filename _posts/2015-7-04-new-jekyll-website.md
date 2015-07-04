@@ -18,6 +18,35 @@ As a developer once you learn the speed gain you can get by documenting what you
 
 GITHUB to the rescue! You can write beautiful documents super quickly with lists, rulers, headings and the like.
 
+**input**
+
+```
+####Markdown is Cool!
+
+* Some bullet
+
+* Another Bullet
+
+1. The first step
+
+2. The second step
+
+```
+
+**output**
+
+####Markdown is Cool!
+
+* Some bullet
+
+* Another Bullet
+
+1. The first step
+
+2. The second step
+
+---
+
 ##Jekyll + Github = Github-Pages + Free Domain
 
 Github has chosen Jekyll to be their site generation platform. 
