@@ -9,7 +9,8 @@ url: "http://www.objectivetruth.ca" # the base hostname & protocol for your site
 github_username:  Objectivetruth
 sass: 
     style: :compressed
-
+paginate: 5
+paginate_path: "/archives/page:num"
 # Build settings
 markdown: redcarpet
 
