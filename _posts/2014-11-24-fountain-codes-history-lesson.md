@@ -5,7 +5,6 @@ published: true
 title: Fountain Codes - History Lesson
 categories:
 - FountainCode
-tags: []
 ---
 Fountain Codes are also called rateless erasure codes. This means there
 isn't a fixed number of symbols for the original message. Theoretically

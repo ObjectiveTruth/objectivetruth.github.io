@@ -5,7 +5,6 @@ published: true
 title: Fountain Code - The Beginnings
 categories:
 - FountainCode
-tags: []
 ---
 Miguel and I, Shaine, have been given the topic on algorithms.  From
 hours of scouting the net we came across Fountain Coding.  Before
