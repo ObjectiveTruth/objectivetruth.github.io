@@ -25,8 +25,12 @@ layout: default
         {% endfor %}
     </ul>
 
-    {% if paginator.previous_page %}
+    {% if paginator.previous_page and paginator.previous_page != 1 %}
     <a class="btn btn-default pull-left" href="/archives/page{{ paginator.previous_page }}" role="button">Previous</a>
+    {% endif %}
+
+    {% if paginator.previous_page and paginator.previous_page == 1 %}
+    <a class="btn btn-default pull-left" href="/{{ site.baseurl }}" role="button">Previous</a>
     {% endif %}
 
     {% if paginator.next_page %}
