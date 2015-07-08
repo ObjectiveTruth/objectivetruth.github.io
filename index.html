@@ -12,18 +12,25 @@ layout: default
         <h2>
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
         </h2>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }} </span>
+        <br>
+        <span class="post-meta">
+            &nbsp;&nbsp;&nbsp;&nbsp;Tags: 
+                {% for tag in post.tags %}
+                    <a href="/tags/{{tag | slugify}}">{{tag}}</a>&nbsp;&nbsp;
+                {% endfor %}
+        </span>
         {{ post.excerpt | truncate: 200 }}
-      </li>
-    {% endfor %}
-  </ul>
+        </li>
+        {% endfor %}
+    </ul>
 
-  {% if paginator.previous_page %}
-  <a class="btn btn-default pull-left" href="/archives/page{{ paginator.previous_page }}" role="button">Previous</a>
-  {% endif %}
+    {% if paginator.previous_page %}
+    <a class="btn btn-default pull-left" href="/archives/page{{ paginator.previous_page }}" role="button">Previous</a>
+    {% endif %}
 
-  {% if paginator.next_page %}
-  <a class="btn btn-default pull-right" href="/archives/page{{ paginator.next_page }}" role="button">Next</a>
-  {% endif %}
+    {% if paginator.next_page %}
+    <a class="btn btn-default pull-right" href="/archives/page{{ paginator.next_page }}" role="button">Next</a>
+    {% endif %}
 
 </div>
