@@ -4,7 +4,7 @@ title:  "New Website Redesign in Jekyll"
 date:   2015-07-04 13:58:00
 categories: jekyll
 ---
-Jekyll is marketed as Blogging for hackers :neckbeard: and they couldn't be more right
+Jekyll is marketed as Blogging for hackers and they couldn't be more right
 
 ##The Triumph of Markdown
 
