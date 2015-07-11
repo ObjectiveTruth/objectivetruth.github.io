@@ -7,9 +7,9 @@ categories:
 - UOITDCLibraryBooking
 tags:
 - Android
-- keystore
-- keygen
-- proguard
+- Keystore
+- Keygen
+- Proguard
 ---
 App is complete coding wise and did a dry run of the entire config
 process which I will detail below. The only thing left is the app icon

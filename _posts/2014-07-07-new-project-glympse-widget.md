@@ -6,11 +6,9 @@ title: New Project - Glympse Widget
 categories:
 - GlympseWidget
 tags:
-- glympse
-- widget
-- video
-- new
-- project
+- Glympse
+- Widget
+- Video
 ---
 Musings on working on a new project to learn about how widgets work with Glympse
 

@@ -8,12 +8,12 @@ categories:
 tags:
 - Android
 - iOS
-- optionals
-- named parameters
-- cyril
-- mottier
-- swift
-- java
+- Optionals
+- Named Parameters
+- Cyril
+- Mottier
+- Swift
+- Java
 ---
 I like Swift, undoubtedly, a huge improvement over Objective-C (which looks like a
 nightmare) here's my favorites when compared to Java for Android

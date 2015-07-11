@@ -7,11 +7,8 @@ categories:
 - UOITDCLibraryBooking
 tags:
 - DDMS
-- background
-- gridview
-- freddie
-- mercury
-- '0.52'
+- Background
+- Gridview
 ---
 Tons of hurdles I've had to go through and still many more to come. I'll
 throw the patch notes below and I'll write up on what I've been working

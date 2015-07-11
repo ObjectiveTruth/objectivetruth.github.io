@@ -7,10 +7,10 @@ categories:
 - iOs Programming
 tags:
 - iOS
-- localize
-- multi-platform
-- earnings
-- indeed
+- Localize
+- Multi-Platform
+- Earnings
+- Indeed
 ---
 Learning Android has been very rewarding and after sharing my success
 with my professors, they had suggested I learn iOS to round out my

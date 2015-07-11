@@ -1,16 +1,13 @@
 ---
 layout: post
-status: publish
-published: true
 title: Jsoup is awesome but not a good choice for android
 categories:
 - Rants
 tags:
 - Android
-- jsoup
-- slow
-- hatred
+- Jsoup
 ---
+
 I've been doing a lot of android programming lately and decided to take
 on a screen scraping project for my school's library booking system so
 anyone can use the functionality of the dated website without having to

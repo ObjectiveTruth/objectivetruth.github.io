@@ -6,14 +6,14 @@ title: Obfustication, stack traces and Crashlytics (1.07)
 categories:
 - UOITDCLibraryBooking
 tags:
-- config
+- Config
 - Android
 - Crashlytics
-- obfustication
-- pro-guard
-- overdraw
+- Obfustication
+- Pro-guard
+- Overdraw
 - GPU
-- profiling
+- Profiling
 ---
 Haven't written in a little while now that the app is out and working
 as "mostly" intended. There are a few things I want to mention though

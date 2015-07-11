@@ -6,12 +6,12 @@ title: Optimization and Memory (1.04)
 categories:
 - UOITDCLibraryBooking
 tags:
-- jsoup
+- Jsoup
 - ETE
-- monkey
-- adb
-- leak
-- memory
+- Monkey
+- Adb
+- Leak
+- Memory
 ---
 Now that the app has been out for a bit and gotten a few downloads I
 started to get a couple crash reports back with all sorts of weird stuff

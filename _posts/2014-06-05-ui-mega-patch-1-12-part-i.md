@@ -8,11 +8,9 @@ categories:
 tags:
 - Android
 - Picasso
-- runtime polymorphism
-- kenburnsview
-- ken
-- burns
-- xml
+- Runtime Polymorphism
+- Kenburnsview
+- XML
 ---
 Here are few topics that I've been reading up on that are quite
 interesting

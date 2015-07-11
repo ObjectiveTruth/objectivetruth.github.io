@@ -9,8 +9,8 @@ tags:
 - Gmod
 - Dedicated
 - Server
-- maps
-- mods
+- Maps
+- Mods
 ---
 Now that we have a server up and running and your friends have begun to
 join and see how cruddy it is without anything too interesting lets move

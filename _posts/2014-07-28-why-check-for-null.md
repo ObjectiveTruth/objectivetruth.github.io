@@ -8,11 +8,11 @@ categories:
 tags:
 - Android
 - NPE
-- null pointer exception
-- adMob
-- adView
+- Null Pointer Exception
+- AdMob
+- AdView
 - Singleton
-- reddit
+- Reddit
 ---
 I asked the same questions when I first started, now its part of your every day 
 routine with android, check out how and when to check for null

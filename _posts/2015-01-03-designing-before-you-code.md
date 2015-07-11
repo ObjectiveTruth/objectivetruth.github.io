@@ -7,9 +7,9 @@ categories:
 - iOs Programming
 tags:
 - iOS
-- design
-- hamburger
-- mockup
+- Design
+- Hamburger
+- Mockup
 ---
 When I made my first app, I took the naive approach of just starting to
 code and figuring it out as I went.

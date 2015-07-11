@@ -2,7 +2,13 @@
 layout: post
 title:  "Project for PHP"
 date:   2015-04-19 14:30:21
+categories:
+- School
+tags:
+- School
+- PHP
 ---
+
 PHP is an exceedingly popular language that mixes some of the best elements of javascript with elements of object oriented programming.
 
 The decision to learn PHP came from a personal project using Snapchat's undocument API.
@@ -17,8 +23,6 @@ In this report I'll talk about what I've learned so far and some of the best and
 
 ##History
 
----
-
 PHP was first developed as a server-side scripting language in 1994 by Rasmus Lerdof.
 
 The acronym for PHP  use to stand for Personal Home Page but has now changed to mean Hypertext PreProcessor. It is now maintained by The PHP Group which rewrote alot of the core with the Zend Engine which allowed for PHP to become a much more full featured programming language. It now supports debugging, resource management, and many more artifacts modern programmers expect. This has allowed PHP to gain incredible adoption in the world.
@@ -31,7 +35,6 @@ With the ubiquity of Apache this number will still be high but other competitors
 
 ##Type System
 
----
 
 Reference PHP systems are interpreted, however facebook (the largest proponent of PHP) and others have since created compilers for PHP. Among them are HHVM (formerlly HipHop for PHP by facebook), Phalanger (compiles to .net CIL), and Roadsend (compiles to linux and windows binaries).
 
@@ -60,7 +63,6 @@ wat? :confused:.
 
 ##Syntax design for loops
 
----
 
 The design takes heavy inspiration from Java which was probably the language du jour when designing the syntax.
 
@@ -81,7 +83,6 @@ foreach ($colors as $value) {
 ```
 ##Syntax design for functions
 
----
 
 Syntactic inspiration borrows heavily from object oriented java
 
@@ -101,7 +102,6 @@ The program is that it is positionally based. So if you want to not include ```$
 
 ##Degree of support for functions as values
 
----
 
 PHP supports a concept called **variable functions**. 
 
@@ -118,7 +118,6 @@ $func();
 
 ##Degree of support for closure
 
----
 
 **Closures** are supported as of PHP 5.3 and above(5.4 is current version).
 
@@ -145,7 +144,6 @@ The **closure** is already built into the language but the keyword ```use``` all
 
 ##Degree of support for anonymous and higher order functions
 
----
 
 Fairly new to PHP is support for anonymous and higher order functions as of PHP 5.4
 
@@ -172,7 +170,6 @@ myHigherOrderFunc($myCallback);
 ```
 ##Other Novel Features
 
----
 
 ####PHP Runtime Assumptions
 
@@ -205,7 +202,6 @@ echo "my name is $name";
 ```
 ##Discussion on the language tools
 
----
 
 The standard PHP library(SPL) is fairly good. Has many of the functions you would expect.
 
@@ -232,7 +228,6 @@ There is a strong lack of stadard dev tools that come with PHP however, the comm
 
 ##Community
 
----
 
 PHP is very much still relevant today. The PHP Group regularly updates their project and relies strongly on community feedback.
 

@@ -15,10 +15,10 @@ tags:
 - LUA
 - SV
 - Variables
-- flashlight
-- prop
-- pickup
-- config
+- Flashlight
+- Prop
+- Pickup
+- Config
 ---
 I recommend murderer, its super fun with a group of people.
 

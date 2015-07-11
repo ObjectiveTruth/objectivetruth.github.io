@@ -10,11 +10,8 @@ tags:
 - Dalvik
 - RemoteViews
 - Permissions
-- paperwork
-- customs
-- broadcast
+- Broadcast
 - Intent
-- filter
 ---
 My most popular blog post on the subject of intents, widgets and permissions.
 

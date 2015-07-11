@@ -7,10 +7,9 @@ categories:
 - UOITDCLibraryBooking
 tags:
 - HttpsUrlConnection
-- speed
 - New Relic
 - Validators
-- setError
+- SetError
 - Google Analytics
 ---
 So many topics I had to put this in another post. Working with
