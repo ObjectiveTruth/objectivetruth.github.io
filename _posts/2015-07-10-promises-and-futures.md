@@ -1,11 +1,12 @@
 ---
 layout: post
-title:  "Promises and Futures Explained Part 1"
+title:  "Promises and Futures Explained in Scala: Part 1"
 date:   2015-07-10 13:58:00
 categories: Scala
 tags:
 - Promises
 - Futures
+- Scala
 ---
 The amazing world of Asynchronous Programming made SIMPLE
 
