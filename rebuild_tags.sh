@@ -19,21 +19,21 @@ sed -i "s/- //g" uniquetags.txt &&
 #Slugify all lines
 echo "Slugifying all entries" &&
 cat uniquetags.txt | sed -e 's/[^[:alnum:]]/-/g' | tr -s '-' | tr A-Z a-z > slugs.txt &&
-rm uniquetags.txt &&
 
 echo "Removing old tags directory" &&
 rm -rf tags &&
 
 echo "Creating Directories"
-while read line; do
-    mkdir -p "tags/$line" &&
+while read -u 3 -r tags_line && read -u 4 -r slugified_line; do
+    mkdir -p "tags/$slugified_line" &&
 
-    echo "---" > tags/$line/index.html
-    echo "layout: tag_page" >> tags/$line/index.html
-    echo "tag: $line" >> tags/$line/index.html
-    echo "---" >> tags/$line/index.html
-done < slugs.txt
+    echo "---" > tags/$slugified_line/index.html
+    echo "layout: tag_page" >> tags/$slugified_line/index.html
+    echo "tag: $tags_line" >> tags/$slugified_line/index.html
+    echo "---" >> tags/$slugified_line/index.html
+done 3<uniquetags.txt 4<slugs.txt
 
 rm slugs.txt &&
+rm uniquetags.txt &&
 
 echo "Completed!";
