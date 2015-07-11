@@ -13,6 +13,8 @@ paginate: 5
 paginate_path: "/archives/page:num"
 # Build settings
 markdown: redcarpet
+redcarpet:
+    extensions: ["no_intra_emphasis", "autolink", "tables", "with_toc_data"]
 
 gems:
     - jemoji
