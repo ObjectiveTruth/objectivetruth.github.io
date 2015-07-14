@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Promises and Futures Explained in Scala: Part 1"
+title:  "Promises and Futures Explained in Scala"
 date:   2015-07-10 13:58:00
 categories: Scala
 tags:
@@ -121,6 +121,76 @@ promise2 onSuccess {
 }
 ```
 
-But what is the difference between this and Futures?
+##Which one should I use?
 
-Check out Part 2!
+Short answer, **Futures** 
+
+Long answer, it depends.:trollface:
+
+You can find this question repeated many times on Stackoverflow.com with the best answer being here 
+
+http://stackoverflow.com/questions/18960339/clarification-needed-about-futures-and-promises-in-scala)
+
+###Main difference:
+
+**Promises** - Can be completed by client
+
+**Futures** - CANNOT be comppleted by client
+
+###Why is this useful?
+
+If you are composing futures and returning them to the user, you *probably* never want them to complete it on their own. This would mess up your code. So instead give them a future which they can compose as they like, but they can't complete it. Here's an example:
+
+```scala
+def getPromise(): Promise[String] = {
+    val p = Promise[String]
+    Future {
+        Thread sleep 1000
+        p success "I'm done!"
+    }
+    p
+}
+
+//Can give this to client but they can complete it whenever they want which is bad! 
+getPromise() success "Not if I complete it first! muahahaha"
+```
+
+The solution is to convert your Promise into a future
+
+```scala
+def getFuture(): Future[String] = {
+    val p = Promise[String]
+    Future {
+        Thread sleep 1000
+        p success "I'm done! Haha And nobody can complete me except me!"
+    }
+    p.future
+}
+
+//Can give this to client and they won't be able to complete it as future doesn't have a `.success()` function
+
+getFuture.onSuccess(println(_)) //Can only use the Future, yay!
+```
+
+##Conclusion
+
+That's the basics of `Promises` and `Futures` in Scala. In my everyday I use `Futures` almost exclusively.
+
+The real meat of `Futures` and `Promises` is their composability. You dont have to do error handling and crazy stuff when you make them.
+
+You can compose them anyway you like and have the end user unbox it only when they need it. 
+So if there are errors on the way to getting the final result, they will accumulate and you can deal with them then.
+
+This allows for WAYYYY easier code that you can reason about and thus become more agile when dealing with system changes
+
+They aren't perfect but for the most part they work beautifully. I'll be writing some articles on composability patterns coming up which is the real fun part
+
+:godmode:
+
+
+
+
+
+
+
+
