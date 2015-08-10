@@ -7,7 +7,7 @@ permalink: /about/
 
 Thanks for stopping by, 
 
-I'm a computer science student looking to get into the **Machine Learning** industry.
+I'm a Sr. Developer looking to get into the **Machine Learning** industry.
 
 My background ranges from **Outside Sales**, **Biosciences**, **Real Estate Investment**, and now **CS and Technology**.
 
