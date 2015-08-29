@@ -9,7 +9,41 @@
 
     <div class="page-content">
       <div class="container">
-        {{ content }}
+        <div class="row">
+
+          <div class="col-md-9">
+            {{ content }}
+          </div>
+
+          <div class="col-md-3 hidden-sm">
+            <div class="well">
+              <ul class="nav nav-stacked">
+                <li><h2>Tags:</h2></li>
+                  <!-- orders the tags by popularity to be split by the loop below -->
+                      {% capture tags %}
+                          {% for tag in site.tags %}
+                              {{ tag[1].size | plus: 1000 }}#{{ tag[0] }}#{{ tag[1].size }}
+                          {% endfor %}
+                      {% endcapture %}
+                      {% assign sortedtags = tags | split:' ' | sort %}
+
+                  <!-- if you're unsure how this works see this SO answer
+                  http://stackoverflow.com/a/24744306/1293521 -->
+                {% for tag in sortedtags reversed %}
+                  {% assign tagitems = tag | split: '#' %}
+                  {% assign MAX_ITEMS_TO_SHOW = 24 %}
+                      {% if forloop.index > 8 and forloop.index < MAX_ITEMS_TO_SHOW %}
+                          <li><a href="/tags/{{ tagitems[1] | slugify }}/"
+                             style="font-size: {{ tagitems[2]  |  times: 10 | plus: 70  }}%">
+                              {{tagitems[1]}} ({{tagitems[2]}})
+                          </a></li>
+                      {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+
+         </div>
       </div>
     </div>
 
