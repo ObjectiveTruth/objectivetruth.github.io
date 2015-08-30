@@ -12,11 +12,11 @@ sort alltags.txt | uniq -d >> uniquetags.txt
 rm alltags.txt 
 
 echo "Removing prepeding '- ' " 
-sed -i "s/- //g" uniquetags.txt 
+sed -i" " "s/- //g" uniquetags.txt 
 
 echo "Removing lines with tag: and --- in them" 
-sed -i "/tags:/d" uniquetags.txt 
-sed -i "/---/d" uniquetags.txt 
+sed -i" " "/tags:/d" uniquetags.txt 
+sed -i" " "/---/d" uniquetags.txt 
 
 #Slugify all lines
 echo "Slugifying all entries" 
@@ -38,5 +38,7 @@ done 3<uniquetags.txt 4<slugs.txt
 rm uniquetags.txt 
 rm slugs.txt 
 
+#BSD linux doesn't allow inplace sed so a backup is made with a space at the end that must be removed
+rm "uniquetags.txt " 
 
 echo "Completed!";
