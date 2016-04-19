@@ -1,13 +1,15 @@
 ---
 layout: post
-title:  "Waterfall vs Agile(First Person History)"
+title:  "Waterfall vs Agile(History)"
 date:   2016-04-19 13:58:00
 categories: Management
 tags:
 - Agile
 - Waterfall
 ---
-Software is hard, working with people is harder. What's my approach?
+Software is hard, working with people is harder. How have we dealt with this problem?
+
+## History
 
 [Erik Meijer's](https://en.wikipedia.org/wiki/Erik_Meijer_%28computer_scientist%29) put it best in his amazing presentation [One Hacker Way](https://vimeo.com/110554082).
 
@@ -19,7 +21,7 @@ The :key: sentence:
 
 > "It is primarily shaped by human experiences"
 
-# How did we get here/Where are we at?
+## How did we get here/Where are we at?
 
 Most would agree that developers are among the smartest people. They can wrangle computers into doing almost anything
 given enough time :clock1:
@@ -47,7 +49,7 @@ project.
 
 This approach of trying to get it right in the first place is called
 [Waterfall](https://en.wikipedia.org/wiki/Waterfall_model)
-and it **can** be good, if you're making something you've made before (you know what the end product looks like),
+and it *can* be good, if you're making something you've made before (you know what the end product looks like),
 otherwise...
 
 
@@ -72,3 +74,4 @@ and when you see the end product, submit a new change. Keep doing this until its
 
 Next time I'll talk more specifics on my approach to leading an Agile Transformation and what it takes to be an Agile
 Coach
+
