@@ -18,3 +18,5 @@ redcarpet:
 
 gems:
     - jemoji
+    - jekyll-paginate
+
