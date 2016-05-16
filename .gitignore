@@ -2,6 +2,7 @@
 ### Jekyll Specific ###
 .sass-cache
 _site/
+.jekyll-metadata
 
 # Created by https://www.gitignore.io
 
