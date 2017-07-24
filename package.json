@@ -1,0 +1,25 @@
+{
+  "name": "objectivetruth.github.io",
+  "version": "1.0.0",
+  "description": "Nothing but the ObjectiveTruth",
+  "main": "index.js",
+  "scripts": {
+    "compile": "npm run compile-style && npm run compile-layout",
+    "compile-style": "node-sass assets/custom/2.2.0/scss/style.scss --output assets/custom/2.2.0/css/",
+    "compile-layout": "node-sass assets/custom/2.2.0/scss/layouts/miguel.scss --output assets/custom/2.2.0/css/layouts/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ObjectiveTruth/objectivetruth.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ObjectiveTruth/objectivetruth.github.io/issues"
+  },
+  "homepage": "https://github.com/ObjectiveTruth/objectivetruth.github.io#readme",
+  "dependencies": {
+    "node-sass": "^4.5.3"
+  }
+}
