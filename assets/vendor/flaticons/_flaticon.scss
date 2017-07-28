@@ -1,6 +1,6 @@
     /*
     Flaticon icon font: Flaticon
-    Creation date: 24/07/2017 13:43
+    Creation date: 28/07/2017 03:24
     */
 
     @font-face {
@@ -36,20 +36,26 @@
   font-smoothing: antialiased;
     }
 
-    .flaticon-github:before { content: "\f100"; }
-.flaticon-settings:before { content: "\f101"; }
-.flaticon-round-pie-chart:before { content: "\f102"; }
-.flaticon-clock:before { content: "\f103"; }
-.flaticon-briefcase:before { content: "\f104"; }
-.flaticon-medium:before { content: "\f105"; }
-.flaticon-linkedin-logo:before { content: "\f106"; }
-.flaticon-typography:before { content: "\f107"; }
+    .flaticon-stack-overflow:before { content: "\f100"; }
+.flaticon-cell-analysis:before { content: "\f101"; }
+.flaticon-symbols:before { content: "\f102"; }
+.flaticon-github:before { content: "\f103"; }
+.flaticon-medium:before { content: "\f104"; }
+.flaticon-briefcase:before { content: "\f105"; }
+.flaticon-clock:before { content: "\f106"; }
+.flaticon-settings:before { content: "\f107"; }
+.flaticon-round-pie-chart:before { content: "\f108"; }
+.flaticon-linkedin-logo:before { content: "\f109"; }
+.flaticon-typography:before { content: "\f10a"; }
     
-    $font-Flaticon-github: "\f100";
-    $font-Flaticon-settings: "\f101";
-    $font-Flaticon-round-pie-chart: "\f102";
-    $font-Flaticon-clock: "\f103";
-    $font-Flaticon-briefcase: "\f104";
-    $font-Flaticon-medium: "\f105";
-    $font-Flaticon-linkedin-logo: "\f106";
-    $font-Flaticon-typography: "\f107";
+    $font-Flaticon-stack-overflow: "\f100";
+    $font-Flaticon-cell-analysis: "\f101";
+    $font-Flaticon-symbols: "\f102";
+    $font-Flaticon-github: "\f103";
+    $font-Flaticon-medium: "\f104";
+    $font-Flaticon-briefcase: "\f105";
+    $font-Flaticon-clock: "\f106";
+    $font-Flaticon-settings: "\f107";
+    $font-Flaticon-round-pie-chart: "\f108";
+    $font-Flaticon-linkedin-logo: "\f109";
+    $font-Flaticon-typography: "\f10a";
